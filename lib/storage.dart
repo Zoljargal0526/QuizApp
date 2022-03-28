@@ -10,8 +10,8 @@ class Storage {
     storage = firebase_storage.FirebaseStorage.instance;
     //ref = firebase_storage.FirebaseStorage.instance.ref().child('images').child('car.png');
   }
-  Future<String> downloadURL(String imageName) async {
-    String downloadURL = await storage.ref(imageName).getDownloadURL();
+  Future<String> downloadURL(String path) async {
+    String downloadURL = await storage.ref(path).getDownloadURL();
     return downloadURL;
   }
 }
