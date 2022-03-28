@@ -18,7 +18,7 @@ class MainMenu extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyHomePage(title: "")),
+                  MaterialPageRoute(builder: (context) => HomePage(title: "")),
                 );
               })
         ]),

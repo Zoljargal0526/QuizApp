@@ -1,34 +1,32 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/shared_pref.dart';
 import 'package:quiz_app/storage.dart';
 import 'package:quiz_app/word.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'database.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   final TextEditingController txtController = TextEditingController();
   late Database db;
   late Storage storage;
   late Word v;
   late Future<String> url;
   AudioPlayer audioPlayer = AudioPlayer();
-  int _levelData = 1;
-  late SharedPreferences _prefs;
+
   @override
   void initState() {
     super.initState();
     db = Database();
-    getLevel();
     storage = Storage();
     v = new Word(name: "", imagePath: "", audio_file: "audio_file", quiz: false);
   }
@@ -45,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: InputDecoration(hintText: "Enter a word"),
             ),
             SizedBox(height: 20),
-            Text(_levelData.toString()),
+            Text(Shared.prefs.getInt('level').toString()),
             SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
@@ -63,7 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
                 onPressed: () async {
                   setState(() {
-                    incrementLevel(_levelData);
+                    int? level = Shared.prefs.getInt('level')! + 1;
+                    Shared.prefs.setInt('level', level);
                   });
                   url = storage.downloadURL("sounds/Congratulations.mp3");
                   play(await url);
@@ -90,23 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-  }
-
-  Future<void> getLevel() async {
-    _prefs = await SharedPreferences.getInstance();
-
-    setState(() {
-      _levelData = (_prefs.getInt('level') ?? 1);
-    });
-  }
-
-  Future<void> incrementLevel(int level) async {
-    _prefs = await SharedPreferences.getInstance();
-    level = (_prefs.getInt('level') ?? 1) + 1;
-    _prefs.setInt("level", level);
-    setState(() {
-      _levelData = level;
-    });
   }
 
   play(String url) async {
