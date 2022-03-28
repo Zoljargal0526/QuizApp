@@ -94,6 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> getLevel() async {
     _prefs = await SharedPreferences.getInstance();
+
     setState(() {
       _levelData = (_prefs.getInt('level') ?? 1);
     });
