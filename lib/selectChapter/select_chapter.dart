@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/homepage.dart';
 import 'package:quiz_app/selectChapter/chapter_model.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
@@ -38,34 +39,39 @@ class _SelectChapterState extends State<SelectChapter> {
               itemBuilder: (context, index) {
                 return StickyHeader(
                   overlapHeaders: true,
-                  content: Container(
-                    margin: EdgeInsets.fromLTRB(spaceWidth, 0, spaceWidth, 0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.red, width: 3, style: BorderStyle.solid),
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: DecorationImage(
-                          image: AssetImage(chaptersList[index].imagePath),
-                          fit: BoxFit.cover,
-                        )),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            height: 100,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)), color: Colors.blueAccent.withOpacity(0.6)),
-                            padding: EdgeInsets.all(5),
-                            child: AutoSizeText(
-                              chaptersList[index].description,
-                              maxLines: 3,
-                              style: TextStyle(color: Colors.yellow, fontSize: 25),
+                  content: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(title: "title")));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(spaceWidth, 0, spaceWidth, 0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.red, width: 3, style: BorderStyle.solid),
+                          borderRadius: BorderRadius.circular(20.0),
+                          image: DecorationImage(
+                            image: AssetImage(chaptersList[index].imagePath),
+                            fit: BoxFit.cover,
+                          )),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              height: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)), color: Colors.blueAccent.withOpacity(0.6)),
+                              padding: EdgeInsets.all(5),
+                              child: AutoSizeText(
+                                chaptersList[index].description,
+                                maxLines: 3,
+                                style: TextStyle(color: Colors.yellow, fontSize: 25),
+                              ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   header: Container(

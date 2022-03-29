@@ -1,19 +1,21 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:quiz_app/homepage.dart';
+import 'package:quiz_app/selectChapter/select_chapter.dart';
 
 import 'introduction_sheet.dart';
 
 class MainMenuButton extends StatelessWidget {
-  MainMenuButton({Key? key, required String name, required Icon icon}) : super(key: key);
   Icon icon = Icon(Icons.add);
-  String name = "";
+  String name = ""; // = "Example";
+
+  MainMenuButton({Key? key, required this.name, required this.icon}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
         child: Container(
-            width: 100,
+            width: 150,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -35,8 +37,8 @@ class MainMenuButton extends StatelessWidget {
                 context: context,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
                 builder: (context) => IntroductionSheet());
-          } else {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(title: "Play")));
+          } else if (name == "Эхлэх") {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectChapter()));
           }
         });
   }

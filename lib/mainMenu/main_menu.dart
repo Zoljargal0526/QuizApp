@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/mainMenu/main_menu_button.dart';
 
 class MainMenu extends StatelessWidget {
   MainMenu({Key? key}) : super(key: key);
@@ -12,56 +13,11 @@ class MainMenu extends StatelessWidget {
             style: TextStyle(fontSize: 100),
           ),
           SizedBox(height: 40),
-          ElevatedButton(
-              child: Container(
-                  width: 150,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.play_arrow),
-                      SizedBox(width: 5),
-                      Text("Эхлэх", style: TextStyle(fontSize: 14)),
-                    ],
-                  )),
-              style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.black)))),
-              onPressed: () {}),
+          MainMenuButton(name: "Эхлэх", icon: Icon(Icons.play_arrow)),
           SizedBox(height: 20),
-          ElevatedButton(
-              child: Container(
-                  width: 150,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.announcement),
-                      SizedBox(width: 5),
-                      Text("Тоглох заавар", style: TextStyle(fontSize: 14)),
-                    ],
-                  )),
-              style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.black)))),
-              onPressed: () {}),
+          MainMenuButton(name: "Тоглох заавар", icon: Icon(Icons.announcement)),
           SizedBox(height: 20),
-          ElevatedButton(
-              child: Container(
-                  width: 150,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.exit_to_app),
-                      SizedBox(width: 5),
-                      Text("Гарах", style: TextStyle(fontSize: 14)),
-                    ],
-                  )),
-              style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.black)))),
-              onPressed: () {}),
+          MainMenuButton(name: "Гарах", icon: Icon(Icons.exit_to_app)),
         ]),
       ),
     );

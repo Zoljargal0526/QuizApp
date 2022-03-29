@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_app/selectChapter/select_chapter.dart';
+import 'package:quiz_app/mainMenu/main_menu.dart';
 import 'package:quiz_app/shared_pref.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         future: Firebase.initializeApp(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return SelectChapter();
+            return MainMenu();
           }
           return Loading();
         },
