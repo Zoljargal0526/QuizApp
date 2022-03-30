@@ -134,40 +134,43 @@ class _GameScreenState extends State<GameScreen> {
                       children: [
                         for (int i = 0; i < 16; i++)
                           GestureDetector(
-                            child: AnswerLetterButton(
-                              width: minSpace,
-                              height: minSpace,
-                              letter: alphabetList[i],
-                              isSelected: result.contains(i.toString()) && size < c.result.length ? true : false,
-                            ),
-                            onTap: () {
-                              if (size <= c.result.length) {
+                              child: AnswerLetterButton(
+                                width: minSpace,
+                                height: minSpace,
+                                letter: alphabetList[i],
+                                isSelected: result.contains(i.toString()) && size <= c.result.length ? true : false,
+                              ),
+                              onTap: () {
                                 if (!result.contains(i.toString())) {
-                                  result[size] = i.toString();
-                                } else {
-                                  for (int k = 0; k < c.result.length; k++) {
-                                    if (result[k] == i) result[k] = "";
-                                  }
-                                }
+                                  if (size <= c.result.length) {
+                                    if (!result.contains(i.toString())) {
+                                      if (size < c.result.length) {
+                                        result[size] = i.toString();
+                                      }
+                                    } else {
+                                      for (int k = 0; k < c.result.length; k++) {
+                                        if (result[k] == i) result[k] = "";
+                                      }
+                                    }
 
-                                for (int k = 0; k < c.result.length; k++) {
-                                  if (answer[k] == "") {
-                                    answer[k] = alphabetList[i];
-                                    size++;
-                                    break;
+                                    for (int k = 0; k < c.result.length; k++) {
+                                      if (answer[k] == "") {
+                                        answer[k] = alphabetList[i];
+                                        size++;
+                                        break;
+                                      }
+                                    }
                                   }
+                                  if (size == c.result.length) {
+                                    if (c.result == answer.join("")) {
+                                      print("hariu mun baina");
+                                    } else {
+                                      print("hariu bish baina");
+                                    }
+                                  }
+                                  setState(() {});
                                 }
-                              }
-                              if (size == c.result.length) {
-                                if (c.result == answer.join("")) {
-                                  print("hariu mun baina");
-                                } else {
-                                  print("hariu bish baina");
-                                }
-                              }
-                              setState(() {});
-                            },
-                          )
+                              })
                       ],
                     ),
                   ],
