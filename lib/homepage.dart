@@ -1,15 +1,10 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/gameScreen/word.dart';
 import 'package:quiz_app/shared_pref.dart';
-import 'package:quiz_app/storage.dart';
-import 'package:quiz_app/word.dart';
-
-import 'database.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,18 +12,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController txtController = TextEditingController();
-  late Database db;
-  late Storage storage;
-  late Word v;
   late Future<String> url;
-  AudioPlayer audioPlayer = AudioPlayer();
-
+  late Word v;
   @override
   void initState() {
     super.initState();
-    db = Database();
-    storage = Storage();
-    v = new Word(name: "", imagePath: "", audio_file: "audio_file", quiz: false);
+    v = Word(name: "", imagePath: "", audio_file: "audio_file", quiz: false);
   }
 
   @override
@@ -47,13 +36,13 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
-                  txtController.text.isNotEmpty ? db.addData(txtController.text) : null;
+                  txtController.text.isNotEmpty ? Shared.db.addData(txtController.text) : null;
                 },
                 child: Text("Add a word")),
             ElevatedButton(
                 onPressed: () async {
                   if (txtController.text.isNotEmpty) {
-                    v = (await db.getData(txtController.text))!;
+                    v = (await Shared.db.getWordData(txtController.text))!;
                     setState(() {});
                   }
                 },
@@ -62,14 +51,14 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () async {
                   setState(() {
                     int? level = Shared.prefs.getInt('level')! + 1;
-                    Shared.prefs.setInt('level', level);
+                    Shared.prefs.setInt('level', 1);
                   });
-                  url = storage.downloadURL("sounds/Congratulations.mp3");
-                  play(await url);
+                  url = Shared.storagef.downloadURL("sounds/Congratulations.mp3");
+                  Shared.audioPlayerR.play(await url);
                 },
                 child: Text("Play sound")),
             FutureBuilder(
-                future: storage.downloadURL(v.imagePath),
+                future: Shared.storagef.downloadURL(v.imagePath),
                 builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                   if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                     return Container(
@@ -89,12 +78,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  play(String url) async {
-    int result = await audioPlayer.play(url);
-    if (result == 0) {
-      print("Error");
-    }
   }
 }

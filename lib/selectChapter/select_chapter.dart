@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/gameScreen/gameScreen.dart';
 import 'package:quiz_app/homepage.dart';
 import 'package:quiz_app/selectChapter/chapter_model.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -41,7 +42,7 @@ class _SelectChapterState extends State<SelectChapter> {
                   overlapHeaders: true,
                   content: GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(title: "title")));
+                      goGameScreen(chaptersList[index].title);
                     },
                     child: Container(
                       margin: EdgeInsets.fromLTRB(spaceWidth, 0, spaceWidth, 0),
@@ -95,9 +96,17 @@ class _SelectChapterState extends State<SelectChapter> {
             ),
           ),
           SizedBox(height: 20),
-          ElevatedButton(onPressed: () {}, child: Text("Сонгох")),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+              },
+              child: Container(width: 100, child: FittedBox(child: Text("Сонгох")))),
         ],
       ),
     );
+  }
+
+  void goGameScreen(String chapterName) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GameScreen(title: chapterName)));
   }
 }
