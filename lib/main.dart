@@ -8,10 +8,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'audio_player.dart';
 import 'database.dart';
 
+class _WidgetsBindingObserver extends WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    //print(state.toString());
+    if (state == AppLifecycleState.resumed) {
+      Shared.audioPlayerR.audioPlayer.resume();
+    }
+    if (state == AppLifecycleState.paused) {
+      Shared.audioPlayerR.audioPlayer.pause();
+    }
+  }
+}
+
 Future<void> main() async {
+  Paint.enableDithering = true;
   WidgetsFlutterBinding.ensureInitialized();
+
   Shared.prefs = await SharedPreferences.getInstance();
   Firebase.initializeApp().whenComplete(() {
+    WidgetsBinding.instance?.addObserver(_WidgetsBindingObserver());
     Shared.db = Database();
     Shared.storagef = StorageF();
     Shared.audioPlayerR = AudioPlayerR();
@@ -20,8 +37,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  static String levelNum = Shared.prefs.getInt('level').toString();
-
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    v = Word(name: "", imagePath: "", audio_file: "audio_file", quiz: false);
+    v = Word(name: "", imagePath: "", audio_file: "audio_file", mon: "");
   }
 
   @override
@@ -61,6 +61,7 @@ class _HomePageState extends State<HomePage> {
                 future: Shared.storagef.downloadURL(v.imagePath),
                 builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                   if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                    print(v.imagePath);
                     return Container(
                         width: 300,
                         height: 250,

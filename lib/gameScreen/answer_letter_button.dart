@@ -10,7 +10,7 @@ class AnswerLetterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: !isSelected ? Colors.orange : Colors.red,
+      color: !isSelected ? Colors.orange : Colors.grey,
       width: width,
       height: height,
       child: FittedBox(

@@ -1,12 +1,14 @@
+import 'dart:async';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/gameScreen/answer_letter_button.dart';
 import 'package:quiz_app/gameScreen/chapter_data_model.dart';
 import 'package:quiz_app/gameScreen/result_letter_box.dart';
-import 'package:quiz_app/main.dart';
 
 import '../shared_pref.dart';
+import 'Dialogs.dart';
 import 'word.dart';
 
 class GameScreen extends StatefulWidget {
@@ -21,29 +23,31 @@ class _GameScreenState extends State<GameScreen> {
   final TextEditingController txtController = TextEditingController();
   late Future<String> url;
   String chapTitle = "";
+  String BackImagePath = "";
+  String level = "1";
   Word v = Word();
+
   ChapterDataModel c = ChapterDataModel();
   List<String> alphabetList = List.empty();
   List<String> answer = List.empty();
   List<String> result = List.empty();
+  String dialogType = "";
   bool shuffled = false;
   int size = 0;
-  int a = 0;
-  // static const _chars = 'АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЪЬЫЭЮЯ';
-  // final Random _rnd = Random();
-  // String getRandomString(int length) => String.fromCharCodes(Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+  double pos = 20;
+  int a = 0, plus = 50;
 
   @override
   void initState() {
     chapTitle = widget.title;
-    getChapterdata(chapTitle, MyApp.levelNum);
+    level = Shared.prefs.getInt('level').toString();
+    getChapterdata(chapTitle, level);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     double minSpace = MediaQuery.of(context).size.width * 0.1;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -61,7 +65,7 @@ class _GameScreenState extends State<GameScreen> {
                     },
                     icon: Icon(Icons.arrow_back_ios)),
                 Text(
-                  MyApp.levelNum + "-р үе",
+                  chapTitle + " " + level + "-р үе",
                   style: TextStyle(fontSize: 20),
                 ),
                 IconButton(onPressed: () {}, icon: Icon(Icons.lightbulb))
@@ -77,11 +81,20 @@ class _GameScreenState extends State<GameScreen> {
               child: Container(
                 padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                 child: Stack(children: [
-                  Positioned.fill(child: Container(color: Colors.blue)),
+                  if (BackImagePath.isNotEmpty)
+                    Positioned.fill(
+                      child: Container(
+                        child: Image.network(
+                          BackImagePath,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   Positioned(
-                      top: 10,
-                      left: minSpace * 2,
-                      right: minSpace * 2,
+                    top: 10,
+                    left: minSpace * 2,
+                    right: minSpace * 2,
+                    child: GestureDetector(
                       child: Container(
                           height: 50,
                           color: Colors.yellow,
@@ -90,7 +103,30 @@ class _GameScreenState extends State<GameScreen> {
                             c.hint,
                             maxLines: 2,
                             style: TextStyle(fontSize: 25),
-                          )))),
+                          ))),
+                      onTap: () {
+                        move();
+                      },
+                    ),
+                  ),
+                  AnimatedPositioned(
+                      top: 100,
+                      left: pos,
+                      duration: Duration(seconds: 1),
+                      child: GestureDetector(
+                        onTap: () {
+                          back();
+                        },
+                        child: Container(
+                            height: 50,
+                            color: Colors.orange,
+                            child: const Center(
+                                child: AutoSizeText(
+                              "Object",
+                              maxLines: 1,
+                              style: TextStyle(fontSize: 25),
+                            ))),
+                      )),
                   Positioned(
                     left: minSpace,
                     right: minSpace,
@@ -103,7 +139,7 @@ class _GameScreenState extends State<GameScreen> {
                           runSpacing: 10,
                           alignment: WrapAlignment.spaceEvenly,
                           children: [
-                            for (int i = 0; i < c.result.length; i++)
+                            for (int i = 0; i < v.mon.length; i++)
                               GestureDetector(
                                 child: ResultLetterBox(letter: answer[i]),
                                 onTap: () {
@@ -132,28 +168,28 @@ class _GameScreenState extends State<GameScreen> {
                       spacing: minSpace / 5,
                       alignment: WrapAlignment.spaceEvenly,
                       children: [
-                        for (int i = 0; i < 16; i++)
+                        for (int i = 0; i < alphabetList.length; i++)
                           GestureDetector(
                               child: AnswerLetterButton(
                                 width: minSpace,
                                 height: minSpace,
                                 letter: alphabetList[i],
-                                isSelected: result.contains(i.toString()) && size <= c.result.length ? true : false,
+                                isSelected: result.contains(i.toString()) && size <= v.mon.length ? true : false,
                               ),
                               onTap: () {
                                 if (!result.contains(i.toString())) {
-                                  if (size <= c.result.length) {
+                                  if (size <= v.mon.length) {
                                     if (!result.contains(i.toString())) {
-                                      if (size < c.result.length) {
+                                      if (size < v.mon.length) {
                                         result[size] = i.toString();
                                       }
                                     } else {
-                                      for (int k = 0; k < c.result.length; k++) {
+                                      for (int k = 0; k < v.mon.length; k++) {
                                         if (result[k] == i) result[k] = "";
                                       }
                                     }
 
-                                    for (int k = 0; k < c.result.length; k++) {
+                                    for (int k = 0; k < v.mon.length; k++) {
                                       if (answer[k] == "") {
                                         answer[k] = alphabetList[i];
                                         size++;
@@ -161,12 +197,37 @@ class _GameScreenState extends State<GameScreen> {
                                       }
                                     }
                                   }
-                                  if (size == c.result.length) {
-                                    if (c.result == answer.join("")) {
-                                      print("hariu mun baina");
+                                  if (size == v.mon.length) {
+                                    String hariu = answer.join("");
+                                    if (Shared.db.getSearchWord(hariu) != null) {
+                                      String imgPath = "images/" + hariu + ".png";
+
+                                      dialogType = "other";
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => Dialogs(
+                                                type: dialogType,
+                                                imagePath: imgPath,
+                                                result: v.mon,
+                                                answer: hariu,
+                                                submitCorrectAnswer: () {
+                                                  Timer(Duration(seconds: 1), () {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (_) => Dialogs(
+                                                              type: "win",
+                                                            ),
+                                                        barrierDismissible: false);
+                                                  });
+                                                },
+                                              ),
+                                          barrierDismissible: false);
                                     } else {
+                                      dialogType = "lose";
                                       print("hariu bish baina");
+                                      showDialog(context: context, builder: (_) => Dialogs(type: dialogType), barrierDismissible: false);
                                     }
+                                    EmptyAnswerList();
                                   }
                                   setState(() {});
                                 }
@@ -184,17 +245,43 @@ class _GameScreenState extends State<GameScreen> {
   Future<void> getChapterdata(String resultChapter, String level) async {
     c = await Shared.db.getChapterData(resultChapter, level) ?? ChapterDataModel();
     v = await Shared.db.getWordData(c.result) ?? Word();
-    a = await (16 - c.result.length);
+    a = await (16 - v.mon.length);
     if (shuffled == false) {
-      alphabetList = Shared.getRandomString(16 - c.result.length).split('');
-      alphabetList = alphabetList + c.result.split('');
+      alphabetList = Shared.getRandomString(a).split('');
+      alphabetList = alphabetList + v.mon.split('');
       alphabetList = alphabetList.map((email) => email.toLowerCase()).toList();
       alphabetList.shuffle();
       shuffled = true;
     }
+    BackImagePath = await Shared.storagef.downloadURL(c.backgroundPath) as String;
     setState(() {
-      answer = List.filled(c.result.length, "");
-      result = List.filled(c.result.length, "");
+      answer = List.filled(v.mon.length, "");
+      result = List.filled(v.mon.length, "");
     });
+  }
+
+  void move() {
+    if (pos + plus <= MediaQuery.of(context).size.width - 120) {
+      pos = pos + plus;
+    }
+    setState(() {});
+  }
+
+  void back() {
+    if (pos - plus > 0) {
+      pos = pos - plus;
+    }
+    setState(() {});
+  }
+
+  void EmptyAnswerList() {
+    for (int i = 0; i < v.mon.length; i++) {
+      answer[i] = "";
+    }
+    for (int i = 0; i < v.mon.length; i++) {
+      result[i] = "";
+    }
+    size = 0;
+    setState(() {});
   }
 }

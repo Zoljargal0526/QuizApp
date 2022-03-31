@@ -29,14 +29,29 @@ class Database {
   Future<Word?> getWordData(String value) async {
     ref = FirebaseDatabase.instance.ref("words");
     var data = await ref.child(value).once();
-    word = Word(name: "", imagePath: "", audio_file: "", quiz: false);
+    word = Word(name: "", imagePath: "", audio_file: "", mon: "");
     var refData = data.snapshot.value as Map? ?? {};
 
     if (refData.isNotEmpty) {
       word.name = refData["name"];
       word.imagePath = refData["image"];
       word.audio_file = refData["audio_file"];
-      word.quiz = refData["quiz"];
+      word.mon = refData["mon"];
+      return word;
+    }
+    return null;
+  }
+
+  Future<Word?> getSearchWord(String value) async {
+    ref = FirebaseDatabase.instance.ref("words");
+    var data = await ref.orderByChild("/mon").equalTo(value).once();
+    var refData = data.snapshot.value as Map? ?? {};
+    word = Word(name: "", imagePath: "", audio_file: "", mon: "");
+    if (refData.isNotEmpty) {
+      word.name = refData["name"];
+      word.imagePath = refData["image"];
+      word.audio_file = refData["audio_file"];
+      word.mon = refData["mon"];
       return word;
     }
     return null;
@@ -45,13 +60,14 @@ class Database {
   Future<ChapterDataModel?> getChapterData(String title, String level) async {
     ref = FirebaseDatabase.instance.ref("chapters").child(title);
     var data = await ref.child("level" + level).once();
-    chapter = ChapterDataModel(result: '', levelNum: level, chapterTitle: title, hint: '', wrong: '');
+    chapter = ChapterDataModel(result: '', levelNum: level, chapterTitle: title, hint: '', wrong: '', backgroundPath: "");
     var refData = data.snapshot.value as Map;
 
     if (refData.isNotEmpty) {
       chapter.result = refData["result"] as String? ?? "";
       chapter.hint = refData["hint"];
       chapter.wrong = refData["wrong"];
+      chapter.backgroundPath = refData["background"];
       return chapter;
     }
   }

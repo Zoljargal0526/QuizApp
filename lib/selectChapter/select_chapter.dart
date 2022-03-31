@@ -1,8 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/gameScreen/gameScreen.dart';
 import 'package:quiz_app/homepage.dart';
 import 'package:quiz_app/selectChapter/chapter_model.dart';
+import 'package:quiz_app/shared_pref.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 class SelectChapter extends StatefulWidget {
@@ -23,7 +25,9 @@ class _SelectChapterState extends State<SelectChapter> {
           children: [
             IconButton(
               icon: Icon(Icons.volume_up),
-              onPressed: () {},
+              onPressed: () {
+                Shared.audioPlayerR.audioPlayer.setReleaseMode(ReleaseMode.STOP);
+              },
             ),
           ],
         )
