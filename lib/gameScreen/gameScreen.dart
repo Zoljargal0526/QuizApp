@@ -7,6 +7,8 @@ import 'package:quiz_app/gameScreen/answer_letter_button.dart';
 import 'package:quiz_app/gameScreen/chapter_data_model.dart';
 import 'package:quiz_app/gameScreen/result_letter_box.dart';
 
+import '../homepage.dart';
+import '../levels/level1.dart';
 import '../shared_pref.dart';
 import 'Dialogs.dart';
 import 'word.dart';
@@ -24,6 +26,7 @@ class _GameScreenState extends State<GameScreen> {
   late Future<String> url;
   String chapTitle = "";
   String BackImagePath = "";
+  String BackImagePath1 = "";
   String level = "1";
   Word v = Word();
 
@@ -32,16 +35,15 @@ class _GameScreenState extends State<GameScreen> {
   List<String> answer = List.empty();
   List<String> result = List.empty();
   String dialogType = "";
-  bool shuffled = false;
+  bool shuffled = false, win = false;
   int size = 0;
-  double pos = 20;
-  int a = 0, plus = 50;
+  int a = 0;
 
   @override
   void initState() {
     chapTitle = widget.title;
     level = Shared.prefs.getInt('level').toString();
-    getChapterdata(chapTitle, level);
+    getChapterdata(chapTitle, "1");
     super.initState();
   }
 
@@ -79,7 +81,6 @@ class _GameScreenState extends State<GameScreen> {
           Expanded(
               flex: 3,
               child: Container(
-                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                 child: Stack(children: [
                   if (BackImagePath.isNotEmpty)
                     Positioned.fill(
@@ -90,50 +91,38 @@ class _GameScreenState extends State<GameScreen> {
                         ),
                       ),
                     ),
+                  if (win) Positioned.fill(child: Level1()),
                   Positioned(
                     top: 10,
                     left: minSpace * 2,
                     right: minSpace * 2,
-                    child: GestureDetector(
-                      child: Container(
-                          height: 50,
-                          color: Colors.yellow,
-                          child: Center(
-                              child: AutoSizeText(
-                            c.hint,
-                            maxLines: 2,
-                            style: TextStyle(fontSize: 25),
-                          ))),
-                      onTap: () {
-                        move();
-                      },
-                    ),
+                    child: Container(
+                        height: 50,
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                            color: Colors.yellow,
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0, 10),
+                                color: Colors.grey,
+                                blurRadius: 10,
+                              )
+                            ],
+                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))),
+                        child: Center(
+                            child: AutoSizeText(
+                          c.hint,
+                          maxLines: 2,
+                          style: TextStyle(fontSize: 25, color: Colors.red),
+                        ))),
                   ),
-                  AnimatedPositioned(
-                      top: 100,
-                      left: pos,
-                      duration: Duration(seconds: 1),
-                      child: GestureDetector(
-                        onTap: () {
-                          back();
-                        },
-                        child: Container(
-                            height: 50,
-                            color: Colors.orange,
-                            child: const Center(
-                                child: AutoSizeText(
-                              "Object",
-                              maxLines: 1,
-                              style: TextStyle(fontSize: 25),
-                            ))),
-                      )),
                   Positioned(
                     left: minSpace,
                     right: minSpace,
                     bottom: 10,
                     child: Container(
+                        decoration: BoxDecoration(color: Colors.pinkAccent.withOpacity(0.5), borderRadius: BorderRadius.circular(20)),
                         padding: EdgeInsets.all(5),
-                        color: Colors.green,
                         child: Wrap(
                           direction: Axis.horizontal,
                           runSpacing: 10,
@@ -158,7 +147,9 @@ class _GameScreenState extends State<GameScreen> {
               flex: 1,
               child: Container(
                 width: minSpace * 10,
-                color: Colors.red,
+                decoration: BoxDecoration(
+                    border: Border(top: BorderSide(color: Colors.black, width: 3)),
+                    gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.red, Colors.pinkAccent.withOpacity(0.7), Colors.deepPurple])),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
@@ -211,7 +202,11 @@ class _GameScreenState extends State<GameScreen> {
                                                 result: v.mon,
                                                 answer: hariu,
                                                 submitCorrectAnswer: () {
-                                                  Timer(Duration(seconds: 1), () {
+                                                  setState(() {
+                                                    BackImagePath = BackImagePath1;
+                                                    win = true;
+                                                  });
+                                                  Timer(Duration(seconds: 5), () {
                                                     showDialog(
                                                         context: context,
                                                         builder: (_) => Dialogs(
@@ -254,24 +249,46 @@ class _GameScreenState extends State<GameScreen> {
       shuffled = true;
     }
     BackImagePath = await Shared.storagef.downloadURL(c.backgroundPath) as String;
+    BackImagePath1 = await Shared.storagef.downloadURL("win/" + c.backgroundPath) as String;
+
     setState(() {
       answer = List.filled(v.mon.length, "");
       result = List.filled(v.mon.length, "");
     });
   }
 
-  void move() {
-    if (pos + plus <= MediaQuery.of(context).size.width - 120) {
-      pos = pos + plus;
+  void selectLevel(int a) {
+    switch (a) {
+      case 1:
+        Level1();
+        break;
+      case 2:
+        Level1();
+        break;
+      case 3:
+        Level1();
+        break;
+      case 4:
+        Level1();
+        break;
+      case 5:
+        Level1();
+        break;
+      case 6:
+        Level1();
+        break;
+      case 7:
+        Level1();
+        break;
+      case 8:
+        Level1();
+        break;
+      case 9:
+        Level1();
+        break;
+      default:
+        HomePage();
     }
-    setState(() {});
-  }
-
-  void back() {
-    if (pos - plus > 0) {
-      pos = pos - plus;
-    }
-    setState(() {});
   }
 
   void EmptyAnswerList() {

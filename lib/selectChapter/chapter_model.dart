@@ -7,8 +7,8 @@ class ChapterModel {
 }
 
 List<ChapterModel> chaptersList = [
-  ChapterModel(1, "chapter1", "asd hasdhas aod asoid aosid has ", "lib/assets/chapterImages/chapter1.jpg"),
-  ChapterModel(2, "chapter2", "asd hasdhas aod asoid aosid has ", "lib/assets/chapterImages/chapter2.gif"),
-  ChapterModel(3, "chapter3", "asd hasdhas aod asoid aosid has ", "lib/assets/chapterImages/chapter1.jpg"),
-  ChapterModel(4, "chapter4", "asd hasdhas aod asoid aosid has ", "lib/assets/chapterImages/chapter2.gif"),
+  ChapterModel(1, "Бүлэг-1", "Үсгэн ертөнцөд орсон хүүгийн ой дахь адал явдал ", "lib/assets/chapterImages/chapter1.png"),
+  ChapterModel(2, "Бүлэг-2", "asd hasdhas aod asoid aosid has ", "lib/assets/chapterImages/chapter2.gif"),
+  ChapterModel(3, "Бүлэг-3", "asd hasdhas aod asoid aosid has ", "lib/assets/chapterImages/chapter1.png"),
+  ChapterModel(4, "Бүлэг-4", "asd hasdhas aod asoid aosid has ", "lib/assets/chapterImages/chapter2.gif"),
 ];

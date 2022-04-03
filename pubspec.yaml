@@ -47,6 +47,8 @@ dependencies:
   auto_size_text: ^3.0.0
 
   gif_view: ^0.0.1
+  rive: ^0.8.4
+  lottie: ^1.2.2
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +75,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - lib/assets/chapterImages/
+    - lib/assets/mainMenu/
+    - lib/assets/dialogImage/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

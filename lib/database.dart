@@ -29,13 +29,12 @@ class Database {
   Future<Word?> getWordData(String value) async {
     ref = FirebaseDatabase.instance.ref("words");
     var data = await ref.child(value).once();
-    word = Word(name: "", imagePath: "", audio_file: "", mon: "");
+    word = Word(name: "", imagePath: "", mon: "");
     var refData = data.snapshot.value as Map? ?? {};
 
     if (refData.isNotEmpty) {
       word.name = refData["name"];
       word.imagePath = refData["image"];
-      word.audio_file = refData["audio_file"];
       word.mon = refData["mon"];
       return word;
     }
@@ -46,11 +45,10 @@ class Database {
     ref = FirebaseDatabase.instance.ref("words");
     var data = await ref.orderByChild("/mon").equalTo(value).once();
     var refData = data.snapshot.value as Map? ?? {};
-    word = Word(name: "", imagePath: "", audio_file: "", mon: "");
+    word = Word(name: "", imagePath: "", mon: "");
     if (refData.isNotEmpty) {
       word.name = refData["name"];
       word.imagePath = refData["image"];
-      word.audio_file = refData["audio_file"];
       word.mon = refData["mon"];
       return word;
     }
@@ -58,15 +56,24 @@ class Database {
   }
 
   Future<ChapterDataModel?> getChapterData(String title, String level) async {
+    if (title == "Бүлэг-1") {
+      title = "chapter1";
+    } else if (title == "Бүлэг-2") {
+      title = "chapter2";
+    } else if (title == "Бүлэг-3") {
+      title = "chapter3";
+    } else if (title == "Бүлэг-4") {
+      title = "chapter4";
+    }
     ref = FirebaseDatabase.instance.ref("chapters").child(title);
     var data = await ref.child("level" + level).once();
-    chapter = ChapterDataModel(result: '', levelNum: level, chapterTitle: title, hint: '', wrong: '', backgroundPath: "");
+    chapter = ChapterDataModel(result: '', levelNum: level, chapterTitle: title, hint: '', help: '', backgroundPath: "");
     var refData = data.snapshot.value as Map;
 
     if (refData.isNotEmpty) {
       chapter.result = refData["result"] as String? ?? "";
       chapter.hint = refData["hint"];
-      chapter.wrong = refData["wrong"];
+      chapter.help = refData["help"];
       chapter.backgroundPath = refData["background"];
       return chapter;
     }

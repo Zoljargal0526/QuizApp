@@ -9,12 +9,29 @@ class AnswerLetterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: !isSelected ? Colors.orange : Colors.grey,
-      width: width,
-      height: height,
-      child: FittedBox(
-        child: Text(letter),
+    return Visibility(
+      maintainAnimation: true,
+      maintainState: true,
+      maintainSize: true,
+      visible: !isSelected,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 1, style: BorderStyle.solid),
+          color: Colors.orange,
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 5),
+              color: Colors.black,
+              blurRadius: 2,
+            )
+          ],
+        ),
+        width: width,
+        height: height,
+        padding: EdgeInsets.all(3),
+        child: FittedBox(
+          child: Text(letter),
+        ),
       ),
     );
   }

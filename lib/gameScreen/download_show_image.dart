@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/mainMenu/loading.dart';
 
 import '../shared_pref.dart';
 
@@ -20,7 +21,7 @@ class ShowImage extends StatelessWidget {
             );
           }
           if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
-            return Container(width: width, height: height, child: CircularProgressIndicator());
+            return Loading();
           }
           return Container();
         });
