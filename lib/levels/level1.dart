@@ -6,8 +6,7 @@ class Level1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Center(
+    return Center(
       child: Container(
           width: 100,
           height: 100,
@@ -15,7 +14,7 @@ class Level1 extends StatelessWidget {
             color: Colors.brown.withOpacity(0.7),
             borderRadius: BorderRadius.circular(50),
           ),
-          child: Lottie.network("https://assets4.lottiefiles.com/packages/lf20_ko9ahj1s.json", width: 50, height: 50)),
-    ));
+          child: Lottie.network("https://assets1.lottiefiles.com/packages/lf20_i7ixqfgx.json", width: 50, height: 50)),
+    );
   }
 }

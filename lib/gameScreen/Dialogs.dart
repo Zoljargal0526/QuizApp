@@ -50,7 +50,7 @@ class _DialogsState extends State<Dialogs> {
               Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text("Таны хариулт зөв байна", style: TextStyle(fontSize: 25, color: Colors.black, fontStyle: FontStyle.italic)),
                 Text("Та үргэлжлүүлэх үү?", style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
-                Positioned.fill(
+                Center(
                   child: GifView.asset('lib/assets/chapterImages/dancing.gif', width: 200, height: 200, frameRate: 10),
                 ),
                 Row(

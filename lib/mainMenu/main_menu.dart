@@ -21,11 +21,26 @@ class MainMenu extends StatelessWidget {
               child: FittedBox(child: Lottie.asset("lib/assets/mainMenu/children-holding-letters.json")),
             ),
             const SizedBox(height: 40),
-            MainMenuButton(name: "Эхлэх", icon: Icon(Icons.play_arrow)),
+            MainMenuButton(
+                name: "Эхлэх",
+                icon: Icon(
+                  Icons.play_arrow,
+                  color: Colors.black,
+                )),
             const SizedBox(height: 20),
-            MainMenuButton(name: "Тоглох заавар", icon: Icon(Icons.announcement)),
+            MainMenuButton(
+                name: "Тоглох заавар",
+                icon: Icon(
+                  Icons.announcement,
+                  color: Colors.black,
+                )),
             const SizedBox(height: 20),
-            MainMenuButton(name: "Гарах", icon: Icon(Icons.exit_to_app)),
+            MainMenuButton(
+                name: "Гарах",
+                icon: Icon(
+                  Icons.exit_to_app,
+                  color: Colors.black,
+                )),
           ]),
         ),
       ),

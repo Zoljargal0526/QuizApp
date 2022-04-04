@@ -9,6 +9,7 @@ import 'package:quiz_app/gameScreen/result_letter_box.dart';
 
 import '../homepage.dart';
 import '../levels/level1.dart';
+import '../levels/level2.dart';
 import '../shared_pref.dart';
 import 'Dialogs.dart';
 import 'word.dart';
@@ -53,6 +54,7 @@ class _GameScreenState extends State<GameScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.black,
         elevation: 0,
         actions: [
           Expanded(
@@ -91,7 +93,7 @@ class _GameScreenState extends State<GameScreen> {
                         ),
                       ),
                     ),
-                  if (win) Positioned.fill(child: Level1()),
+                  if (win) Positioned.fill(child: selectLevel(1)!),
                   Positioned(
                     top: 10,
                     left: minSpace * 2,
@@ -113,6 +115,7 @@ class _GameScreenState extends State<GameScreen> {
                             child: AutoSizeText(
                           c.hint,
                           maxLines: 2,
+                          textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 25, color: Colors.red),
                         ))),
                   ),
@@ -257,14 +260,12 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-  void selectLevel(int a) {
+  Widget? selectLevel(int a) {
     switch (a) {
       case 1:
-        Level1();
-        break;
+        return Level1();
       case 2:
-        Level1();
-        break;
+        return Level2();
       case 3:
         Level1();
         break;
@@ -287,7 +288,7 @@ class _GameScreenState extends State<GameScreen> {
         Level1();
         break;
       default:
-        HomePage();
+        return HomePage();
     }
   }
 

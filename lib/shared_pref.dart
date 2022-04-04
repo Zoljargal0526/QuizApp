@@ -11,7 +11,7 @@ class Shared {
   static late final Database db;
   static late final StorageF storagef;
   static late final AudioPlayerR audioPlayerR;
-  static const _chars = 'АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЪЬЫЭЮЯ';
+  static const _chars = 'АБВГДЕЖЗИЛМНОӨРСТУҮХЦЧЭЮЯ';
   static final Random _rnd = Random();
   static String getRandomString(int length) => String.fromCharCodes(Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 

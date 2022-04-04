@@ -13,21 +13,21 @@ class MainMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return TextButton(
         child: Container(
-            width: 150,
+            width: 240,
+            height: 35,
+            decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage("lib/assets/mainMenu/buttonback.png"), fit: BoxFit.cover),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 icon,
                 SizedBox(width: 5),
-                Text(name, style: TextStyle(fontSize: 14)),
+                FittedBox(child: Text(name, style: TextStyle(fontSize: 14, color: Colors.black, fontStyle: FontStyle.italic))),
               ],
             )),
-        style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.black)))),
         onPressed: () {
           if (name == "Гарах") {
             exit(0);
@@ -38,7 +38,22 @@ class MainMenuButton extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
                 builder: (context) => IntroductionSheet());
           } else if (name == "Эхлэх") {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectChapter()));
+            //Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectChapter()));
+            Navigator.push(
+                context,
+                PageRouteBuilder(
+                    transitionDuration: Duration(seconds: 2),
+                    transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secAnimation, Widget child) {
+                      animation = CurvedAnimation(parent: animation, curve: Curves.elasticInOut);
+                      return ScaleTransition(
+                        scale: animation,
+                        child: child,
+                        alignment: Alignment.center,
+                      );
+                    },
+                    pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secAnimation) {
+                      return SelectChapter();
+                    }));
           }
         });
   }

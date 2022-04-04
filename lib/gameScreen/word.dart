@@ -2,5 +2,6 @@ class Word {
   String name = "";
   String imagePath = "";
   String mon = "";
-  Word({this.name = "", this.imagePath = "", this.mon = ""});
+  String id = "";
+  Word({this.name = "", this.imagePath = "", this.mon = "", this.id = ""});
 }
