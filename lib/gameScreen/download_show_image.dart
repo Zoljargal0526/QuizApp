@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/mainMenu/loading.dart';
 
 import '../shared_pref.dart';
 
 class ShowImage extends StatelessWidget {
   String path = "";
   double width = 250;
-  double height = 250;
-  ShowImage({Key? key, this.path = "", this.width = 250, this.height = 250}) : super(key: key);
+  ShowImage({
+    Key? key,
+    this.path = "",
+    this.width = 250,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +19,13 @@ class ShowImage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
             return Image.network(
               snapshot.data!,
+              width: width,
+              height: width,
               fit: BoxFit.cover,
             );
           }
           if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
-            return Loading();
+            return Center(child: CircularProgressIndicator());
           }
           return Container();
         });

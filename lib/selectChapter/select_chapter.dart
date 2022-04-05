@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/gameScreen/gameScreen.dart';
 import 'package:quiz_app/gameScreen2/gameScreen2.dart';
+import 'package:quiz_app/gameScreen3/gameScreen3.dart';
 import 'package:quiz_app/selectChapter/chapter_model.dart';
 import 'package:quiz_app/shared_pref.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -143,7 +144,11 @@ class _SelectChapterState extends State<SelectChapter> {
               );
             },
             pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secAnimation) {
-              return GameScreen(title: chapterName);
+              return chapterName == "Бүлэг-1"
+                  ? GameScreen(title: chapterName)
+                  : chapterName == "Бүлэг-2"
+                      ? GameScreen2()
+                      : GameScreen3();
             }));
   }
 }
