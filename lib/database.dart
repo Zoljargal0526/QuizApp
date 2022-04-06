@@ -6,6 +6,7 @@ import 'package:quiz_app/gameScreen/chapter_data_model.dart';
 import 'package:quiz_app/gameScreen/word.dart';
 
 import 'gameScreen3/chapterDataModel3.dart';
+import 'gameScreen4/chapterDataModel4.dart';
 
 class Database {
   late FirebaseDatabase database;
@@ -13,6 +14,7 @@ class Database {
   late Word word;
   late ChapterDataModel chapter;
   late ChapterDataModel3 chapter3;
+  late ChapterDataModel4 chapter4;
   // late DatabaseEvent event;
   Database() {
     Firebase.initializeApp().whenComplete(() async {
@@ -96,6 +98,25 @@ class Database {
       chapter3.backgroundPath = refData["background"];
       chapter3.blackbackgroundPath = refData["backgroundw"];
       return chapter3;
+    }
+  }
+
+  Future<ChapterDataModel4?> getChapterData4(String level) async {
+    ref = FirebaseDatabase.instance.ref("chapters").child("chapter4");
+    var data = await ref.child("level" + level).once();
+    chapter4 = ChapterDataModel4(
+      word1: '',
+      word2: "",
+      word3: "",
+      backgroundPath: "",
+    );
+    var refData = data.snapshot.value as Map;
+    if (refData.isNotEmpty) {
+      chapter4.word1 = refData["word1"];
+      chapter4.word2 = refData["word2"];
+      chapter4.word3 = refData["word3"];
+      chapter4.backgroundPath = refData["image"];
+      return chapter4;
     }
   }
 }

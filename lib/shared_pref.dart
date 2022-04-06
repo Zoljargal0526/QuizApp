@@ -15,18 +15,6 @@ class Shared {
 
   static final Random _rnd = Random();
   static String getRandomString(int length) => String.fromCharCodes(Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
-
-/* int levelData = 1;
-  Future<int> getLevel() async {
-    levelData = (prefs.getInt('level') ?? 1);
-    return levelData;
-  }
-
-  Future<void> incrementLevel(int level) async {
-    level = (prefs.getInt('level') ?? 1) + 1;
-    prefs.setInt("level", level);
-    levelData = level;
-  }*/
   static const randomstr = [
     'Нохой',
     "Заан",

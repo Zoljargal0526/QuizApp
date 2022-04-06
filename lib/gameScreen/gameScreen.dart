@@ -222,7 +222,6 @@ class _GameScreenState extends State<GameScreen> {
                                           barrierDismissible: false);
                                     } else {
                                       dialogType = "lose";
-                                      print("hariu bish baina");
                                       showDialog(context: context, builder: (_) => Dialogs(type: dialogType), barrierDismissible: false);
                                     }
                                     EmptyAnswerList();

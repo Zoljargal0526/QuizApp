@@ -8,6 +8,8 @@ import 'package:quiz_app/selectChapter/chapter_model.dart';
 import 'package:quiz_app/shared_pref.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
+import '../gameScreen4/gameScreen4.dart';
+
 class SelectChapter extends StatefulWidget {
   const SelectChapter({Key? key}) : super(key: key);
 
@@ -148,7 +150,9 @@ class _SelectChapterState extends State<SelectChapter> {
                   ? GameScreen(title: chapterName)
                   : chapterName == "Бүлэг-2"
                       ? GameScreen2()
-                      : GameScreen3();
+                      : chapterName == "Бүлэг-3"
+                          ? GameScreen3()
+                          : GameScreen4();
             }));
   }
 }

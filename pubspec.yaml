@@ -44,6 +44,7 @@ dependencies:
 
   shared_preferences: ^2.0.13
   sticky_headers: ^0.2.0
+  dotted_border: ^2.0.0+2
   auto_size_text: ^3.0.0
 
   gif_view: ^0.0.1

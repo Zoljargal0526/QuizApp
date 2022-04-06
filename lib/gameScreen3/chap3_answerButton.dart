@@ -34,21 +34,10 @@ class _Chap3AnswerButtonState extends State<Chap3AnswerButton> {
         } else {
           showDialog(
               context: context,
-              builder: (_) => AlertDialog(
-                    title: Text("Хариулт буруу байна"),
-                    actions: [
-                      Row(
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text("Дахиж хариулах")),
-                          TextButton(onPressed: () {}, child: Text("Гарах"))
-                        ],
-                      )
-                    ],
-                  ));
+              builder: (_) => Dialogs(
+                    type: "lose",
+                  ),
+              barrierDismissible: false);
         }
       },
     );

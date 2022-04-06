@@ -31,6 +31,7 @@ class _ImageConState extends State<ImageCon> {
         setState(() {
           isTap = !isTap;
         });
+
         Timer(Duration(seconds: 3), () {
           if (widget.result == widget.word.name) {
             showDialog(
@@ -39,13 +40,10 @@ class _ImageConState extends State<ImageCon> {
                       type: "win",
                     ),
                 barrierDismissible: false);
-            print("hariu zuw");
           } else {
             setState(() {
               isTap = !isTap;
             });
-            print("hariu buruu");
-            print("image con:" + widget.result.toString() + " word name : " + widget.word.name);
           }
         });
       },

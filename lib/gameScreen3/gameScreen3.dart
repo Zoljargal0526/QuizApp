@@ -125,6 +125,7 @@ class _GameScreen3State extends State<GameScreen3> {
     BackImagePath = await Shared.storagef.downloadURL(c.backgroundPath) as String;
     BlackBackImagePath = await Shared.storagef.downloadURL(c.blackbackgroundPath) as String;
     answers.add(c.result);
+    answers.shuffle();
     setState(() {});
   }
 }

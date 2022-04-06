@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -9,16 +10,15 @@ import 'image_container.dart';
 
 class GameScreen2 extends StatefulWidget {
   const GameScreen2({Key? key}) : super(key: key);
-
   @override
-  State<GameScreen2> createState() => _GameScreen2State();
+  State<GameScreen2> createState() => GameScreen2State();
 }
 
 late DatabaseReference ref;
 List<Word> words = List.empty(growable: true);
 int r = 0;
 
-class _GameScreen2State extends State<GameScreen2> {
+class GameScreen2State extends State<GameScreen2> {
   @override
   void initState() {
     getListWordData();
@@ -83,7 +83,27 @@ class _GameScreen2State extends State<GameScreen2> {
                       child: Container(
                         height: double.maxFinite,
                         child: Image(image: AssetImage("lib/assets/gameScreen2images/mainChar.png")),
-                      ))
+                      )),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 5, right: 5),
+                      width: 180,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2, style: BorderStyle.solid),
+                          borderRadius: BorderRadius.all(Radius.elliptical(120, 50)),
+                          color: Colors.white),
+                      height: 75,
+                      child: Center(
+                        child: AutoSizeText(
+                          "Амжилт хүсье. Чи олж чаднаа.",
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             )
