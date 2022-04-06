@@ -30,7 +30,7 @@ class _DragDropState extends State<DragDrop> {
             child: Container(
               height: width - 10,
               width: width - 10,
-              color: Colors.green,
+              color: Colors.red,
               child: Center(
                 child: FittedBox(
                   child: Text(
@@ -45,7 +45,7 @@ class _DragDropState extends State<DragDrop> {
                 height: width - 10,
                 width: width - 10,
                 decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: Colors.red,
                 ),
                 child: Center(
                   child: FittedBox(
@@ -94,7 +94,7 @@ class _DragDropState extends State<DragDrop> {
               child: Container(
                 height: width,
                 width: width,
-                color: GameScreen4.checkDrag[widget.id] ? Colors.redAccent : null,
+                color: GameScreen4.checkDrag[widget.id] ? Colors.green : null,
                 child: Center(
                     child: FittedBox(
                   child: Text(
