@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class Hints extends StatefulWidget {
@@ -27,12 +30,14 @@ class _HintsState extends State<Hints> {
             width: double.maxFinite,
             height: double.maxFinite,
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.yellow, width: 3, style: BorderStyle.solid), color: Colors.deepPurple, borderRadius: BorderRadius.all(Radius.circular(20))),
-            child: FittedBox(
-              alignment: Alignment.center,
-              child: Text(
+                border: Border.all(color: Colors.yellow, width: 3, style: BorderStyle.solid),
+                color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            child: Center(
+              child: AutoSizeText(
                 widget.hint,
-                style: TextStyle(color: Colors.white),
+                maxLines: 3,
+                style: TextStyle(color: Colors.white, fontSize: 20),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -45,7 +50,9 @@ class _HintsState extends State<Hints> {
                     width: double.maxFinite,
                     height: double.maxFinite,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.yellow, width: 3, style: BorderStyle.solid), color: Colors.red, borderRadius: BorderRadius.all(Radius.circular(20))),
+                        border: Border.all(color: Colors.yellow, width: 3, style: BorderStyle.solid),
+                        color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
                   )
                 : Container(),
           ),

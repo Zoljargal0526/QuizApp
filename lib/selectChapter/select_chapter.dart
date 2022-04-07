@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/gameScreen/gameScreen.dart';
 import 'package:quiz_app/gameScreen2/gameScreen2.dart';
 import 'package:quiz_app/gameScreen3/gameScreen3.dart';
+import 'package:quiz_app/homepage.dart';
 import 'package:quiz_app/selectChapter/chapter_model.dart';
 import 'package:quiz_app/shared_pref.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -18,6 +19,19 @@ class SelectChapter extends StatefulWidget {
 }
 
 class _SelectChapterState extends State<SelectChapter> {
+  String level = "";
+  String level2 = "";
+  String level3 = "";
+  String level4 = "";
+  @override
+  void initState() {
+    level = Shared.prefs.getInt('level').toString();
+    level2 = Shared.prefs.getInt('level2').toString();
+    level3 = Shared.prefs.getInt('level3').toString();
+    level4 = Shared.prefs.getInt('level4').toString();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double spaceWidth = MediaQuery.of(context).size.width * 0.1;
@@ -84,7 +98,27 @@ class _SelectChapterState extends State<SelectChapter> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                  color: Colors.white.withOpacity(0.5),
+                                ),
+                                height: 60,
+                                width: 100,
+                                child: FittedBox(
+                                    child: index == 0
+                                        ? Text(level + "/15")
+                                        : index == 1
+                                            ? Text(level2 + "/15")
+                                            : index == 2
+                                                ? Text(level3 + "/15")
+                                                : Text(level4 + "/15")),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -116,7 +150,7 @@ class _SelectChapterState extends State<SelectChapter> {
                     shape:
                         MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.black)))),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const GameScreen2()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
                 },
                 child: Container(
                     padding: EdgeInsets.fromLTRB(50, 10, 50, 10),

@@ -7,9 +7,7 @@ import 'package:quiz_app/gameScreen/answer_letter_button.dart';
 import 'package:quiz_app/gameScreen/chapter_data_model.dart';
 import 'package:quiz_app/gameScreen/result_letter_box.dart';
 
-import '../homepage.dart';
 import '../levels/level1.dart';
-import '../levels/level2.dart';
 import '../shared_pref.dart';
 import 'Dialogs.dart';
 import 'word.dart';
@@ -44,7 +42,7 @@ class _GameScreenState extends State<GameScreen> {
   void initState() {
     chapTitle = widget.title;
     level = Shared.prefs.getInt('level').toString();
-    getChapterdata(chapTitle, "1");
+    getChapterdata(chapTitle, level);
     super.initState();
   }
 
@@ -72,7 +70,11 @@ class _GameScreenState extends State<GameScreen> {
                   chapTitle + " " + level + "-р үе",
                   style: TextStyle(fontSize: 20),
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.lightbulb))
+                IconButton(
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    icon: Icon(Icons.lightbulb))
               ],
             ),
           ))
@@ -93,7 +95,11 @@ class _GameScreenState extends State<GameScreen> {
                         ),
                       ),
                     ),
-                  if (win) Positioned.fill(child: selectLevel(1)!),
+                  if (win)
+                    Positioned.fill(
+                        child: Level1(
+                      url: Shared.levelsLottie[int.parse(level)],
+                    )),
                   Positioned(
                     top: 10,
                     left: minSpace * 2,
@@ -208,6 +214,7 @@ class _GameScreenState extends State<GameScreen> {
                                                   setState(() {
                                                     BackImagePath = BackImagePath1;
                                                     win = true;
+                                                    Shared.prefs.setInt('level', int.parse(level) + 1);
                                                   });
                                                   Timer(Duration(seconds: 5), () {
                                                     showDialog(
@@ -252,43 +259,10 @@ class _GameScreenState extends State<GameScreen> {
     }
     BackImagePath = await Shared.storagef.downloadURL(c.backgroundPath) as String;
     BackImagePath1 = await Shared.storagef.downloadURL("win/" + c.backgroundPath) as String;
-
     setState(() {
       answer = List.filled(v.mon.length, "");
       result = List.filled(v.mon.length, "");
     });
-  }
-
-  Widget? selectLevel(int a) {
-    switch (a) {
-      case 1:
-        return Level1();
-      case 2:
-        return Level2();
-      case 3:
-        Level1();
-        break;
-      case 4:
-        Level1();
-        break;
-      case 5:
-        Level1();
-        break;
-      case 6:
-        Level1();
-        break;
-      case 7:
-        Level1();
-        break;
-      case 8:
-        Level1();
-        break;
-      case 9:
-        Level1();
-        break;
-      default:
-        return HomePage();
-    }
   }
 
   void EmptyAnswerList() {

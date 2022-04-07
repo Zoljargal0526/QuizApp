@@ -6,7 +6,6 @@ import 'package:lottie/lottie.dart';
 import 'package:quiz_app/gameScreen/gameScreen.dart';
 
 import '../mainMenu/main_menu.dart';
-import '../shared_pref.dart';
 import 'download_show_image.dart';
 
 class Dialogs extends StatefulWidget {
@@ -14,6 +13,7 @@ class Dialogs extends StatefulWidget {
   String imagePath = "";
   String result = "";
   String answer = "";
+  //int screenNum = 1;
   VoidCallback? submitCorrectAnswer;
   Dialogs({
     Key? key,
@@ -21,6 +21,7 @@ class Dialogs extends StatefulWidget {
     this.imagePath = "",
     this.result = "",
     this.answer = "",
+    //this.screenNum = 1,
     this.submitCorrectAnswer,
   }) : super(key: key);
 
@@ -61,13 +62,12 @@ class _DialogsState extends State<Dialogs> {
                           backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
                         ),
                         onPressed: () {
+                          //if (widget.screenNum == 1)
                           Navigator.pop(context);
-                          int level = Shared.prefs.getInt('level') ?? 1 + 1;
-                          Shared.prefs.setInt('level', level);
                           Navigator.pushReplacement<void, void>(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) => const GameScreen(title: "Chapter1"),
+                              builder: (BuildContext context) => const GameScreen(title: "Бүлэг-1"),
                             ),
                           );
                         },

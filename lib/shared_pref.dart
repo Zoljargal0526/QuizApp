@@ -15,6 +15,7 @@ class Shared {
 
   static final Random _rnd = Random();
   static String getRandomString(int length) => String.fromCharCodes(Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+  static List<String> levelsLottie = ["", "https://assets1.lottiefiles.com/packages/lf20_i7ixqfgx.json", ''];
   static const randomstr = [
     'Нохой',
     "Заан",

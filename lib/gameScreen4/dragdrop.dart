@@ -109,7 +109,6 @@ class _DragDropState extends State<DragDrop> {
         onAccept: (data) {
           GameScreen4.check[widget.id] = (data);
           a = widget.value.indexOf(data);
-          print('Dropped successfully!' + data + "index=" + a.toString());
           widget.update();
           GameScreen4.checkDrag[widget.id] = true;
           GameScreen4.checkD[a] = true;

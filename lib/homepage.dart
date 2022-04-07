@@ -49,14 +49,19 @@ class _HomePageState extends State<HomePage> {
                 child: Text("Print value")),
             ElevatedButton(
                 onPressed: () async {
-                  setState(() {
-                    int? level = Shared.prefs.getInt('level')! + 1;
-                    Shared.prefs.setInt('level', 1);
-                  });
+                  setState(() {});
                   url = Shared.storagef.downloadURL("sounds/Congratulations.mp3");
                   Shared.audioPlayerR.play(await url);
                 },
                 child: Text("Play sound")),
+            ElevatedButton(
+                onPressed: () async {
+                  setState(() {
+                    //int? level = Shared.prefs.getInt('level')! + 1;
+                    Shared.prefs.setInt('level', 1);
+                  });
+                },
+                child: Text("Set 1")),
             FutureBuilder(
                 future: Shared.storagef.downloadURL(v.imagePath),
                 builder: (BuildContext context, AsyncSnapshot<String> snapshot) {

@@ -9,7 +9,7 @@ import 'hints.dart';
 
 class GameScreen3 extends StatefulWidget {
   const GameScreen3({Key? key}) : super(key: key);
-
+  static bool answer = false;
   @override
   State<GameScreen3> createState() => _GameScreen3State();
 }
@@ -19,12 +19,13 @@ class _GameScreen3State extends State<GameScreen3> {
   String BlackBackImagePath = "";
   String level = "1";
   ChapterDataModel3 c = ChapterDataModel3();
-  bool answer = false;
+
   List<String> answers = List.empty(growable: true);
 
   @override
   void initState() {
     level = Shared.prefs.getInt('level').toString();
+    GameScreen3.answer = false;
     getChapterdata3("1");
     final _random = new Random();
     while (answers.length < 5) {
@@ -32,6 +33,10 @@ class _GameScreen3State extends State<GameScreen3> {
       if (answers.contains(item) == false) answers.add(item);
     }
     super.initState();
+  }
+
+  void _update() {
+    setState(() {});
   }
 
   @override
@@ -75,7 +80,7 @@ class _GameScreen3State extends State<GameScreen3> {
                       ? Container(
                           decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2, style: BorderStyle.solid)),
                           child: Image(
-                            image: !answer ? NetworkImage(BlackBackImagePath) : NetworkImage(BackImagePath),
+                            image: !GameScreen3.answer ? NetworkImage(BlackBackImagePath) : NetworkImage(BackImagePath),
                             fit: BoxFit.cover,
                           ),
                         )
@@ -110,6 +115,7 @@ class _GameScreen3State extends State<GameScreen3> {
                     children: [
                       for (int i = 0; i < answers.length; i++)
                         Chap3AnswerButton(
+                          update: _update,
                           answer: answers[i],
                           result: c.result,
                         )

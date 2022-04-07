@@ -74,7 +74,7 @@ class Database {
     var data = await ref.child("level" + level).once();
     chapter = ChapterDataModel(result: '', levelNum: level, chapterTitle: title, hint: '', help: '', backgroundPath: "");
     var refData = data.snapshot.value as Map;
-
+    print("worked");
     if (refData.isNotEmpty) {
       chapter.result = refData["result"] as String? ?? "";
       chapter.hint = refData["hint"];
