@@ -38,6 +38,7 @@ class _ImageConState extends State<ImageCon> {
                 context: context,
                 builder: (_) => Dialogs(
                       type: "win",
+                      screenNum: 2,
                     ),
                 barrierDismissible: false);
           } else {

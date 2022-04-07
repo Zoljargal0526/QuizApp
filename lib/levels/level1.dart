@@ -12,10 +12,10 @@ class Level1 extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-            color: Colors.brown.withOpacity(0.7),
+            color: url != "" ? Colors.brown.withOpacity(0.7) : Colors.transparent,
             borderRadius: BorderRadius.circular(50),
           ),
-          child: url != "" ? Lottie.network(url, width: 50, height: 50) : null),
+          child: url != "" ? Lottie.network(url, width: 50, height: 50) : Container()),
     );
   }
 }

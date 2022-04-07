@@ -24,14 +24,10 @@ class _GameScreen3State extends State<GameScreen3> {
 
   @override
   void initState() {
-    level = Shared.prefs.getInt('level').toString();
+    level = Shared.prefs.getInt('level3').toString();
     GameScreen3.answer = false;
-    getChapterdata3("1");
-    final _random = new Random();
-    while (answers.length < 5) {
-      String item = Shared.randomstr[_random.nextInt(Shared.randomstr.length)];
-      if (answers.contains(item) == false) answers.add(item);
-    }
+    getChapterdata3(level);
+
     super.initState();
   }
 
@@ -130,8 +126,15 @@ class _GameScreen3State extends State<GameScreen3> {
     c = await Shared.db.getChapterData3(level) ?? ChapterDataModel3();
     BackImagePath = await Shared.storagef.downloadURL(c.backgroundPath) as String;
     BlackBackImagePath = await Shared.storagef.downloadURL(c.blackbackgroundPath) as String;
+    final _random = new Random();
+    while (answers.length < 5) {
+      String item = Shared.randomstr[_random.nextInt(Shared.randomstr.length)];
+      if (answers.contains(item) == false && answers.contains(c.result) != item) answers.add(item);
+    }
     answers.add(c.result);
     answers.shuffle();
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

@@ -29,8 +29,8 @@ class _GameScreen4State extends State<GameScreen4> {
     print(GameScreen4.check);
     GameScreen4.checkDrag = [false, false, false];
     GameScreen4.checkD = [false, false, false];
-    level = Shared.prefs.getInt('level').toString();
-    getChapterdata4("1");
+    level = Shared.prefs.getInt('level4').toString();
+    getChapterdata4(level);
     super.initState();
   }
 
@@ -115,6 +115,7 @@ class _GameScreen4State extends State<GameScreen4> {
                                     context: context,
                                     builder: (_) => Dialogs(
                                           type: "win",
+                                          screenNum: 4,
                                         ),
                                     barrierDismissible: false);
                               } else {
@@ -122,6 +123,7 @@ class _GameScreen4State extends State<GameScreen4> {
                                     context: context,
                                     builder: (_) => Dialogs(
                                           type: "lose",
+                                          screenNum: 4,
                                         ),
                                     barrierDismissible: false);
                               }

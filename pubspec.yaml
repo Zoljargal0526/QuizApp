@@ -46,6 +46,7 @@ dependencies:
   sticky_headers: ^0.2.0
   dotted_border: ^2.0.0+2
   auto_size_text: ^3.0.0
+  focus_detector: ^2.0.1
 
   gif_view: ^0.0.1
   rive: ^0.8.4

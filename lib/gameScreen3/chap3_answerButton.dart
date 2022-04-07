@@ -33,6 +33,7 @@ class _Chap3AnswerButtonState extends State<Chap3AnswerButton> {
                 context: context,
                 builder: (_) => Dialogs(
                       type: "win",
+                      screenNum: 3,
                     ),
                 barrierDismissible: false);
           });

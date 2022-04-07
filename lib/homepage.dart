@@ -59,6 +59,9 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     //int? level = Shared.prefs.getInt('level')! + 1;
                     Shared.prefs.setInt('level', 1);
+                    Shared.prefs.setInt('level2', 1);
+                    Shared.prefs.setInt('level3', 1);
+                    Shared.prefs.setInt('level4', 1);
                   });
                 },
                 child: Text("Set 1")),

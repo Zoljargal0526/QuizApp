@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:gif_view/gif_view.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quiz_app/gameScreen/gameScreen.dart';
+import 'package:quiz_app/shared_pref.dart';
 
+import '../gameScreen2/gameScreen2.dart';
+import '../gameScreen3/gameScreen3.dart';
+import '../gameScreen4/gameScreen4.dart';
 import '../mainMenu/main_menu.dart';
 import 'download_show_image.dart';
 
@@ -13,7 +17,7 @@ class Dialogs extends StatefulWidget {
   String imagePath = "";
   String result = "";
   String answer = "";
-  //int screenNum = 1;
+  int screenNum = 1;
   VoidCallback? submitCorrectAnswer;
   Dialogs({
     Key? key,
@@ -21,7 +25,7 @@ class Dialogs extends StatefulWidget {
     this.imagePath = "",
     this.result = "",
     this.answer = "",
-    //this.screenNum = 1,
+    this.screenNum = 1,
     this.submitCorrectAnswer,
   }) : super(key: key);
 
@@ -30,8 +34,10 @@ class Dialogs extends StatefulWidget {
 }
 
 class _DialogsState extends State<Dialogs> {
+  String level = "";
   @override
   void initState() {
+    level = Shared.prefs.getInt("level" + widget.screenNum.toString()).toString();
     super.initState();
   }
 
@@ -50,6 +56,11 @@ class _DialogsState extends State<Dialogs> {
               ),
               Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text("Таны хариулт зөв байна", style: TextStyle(fontSize: 25, color: Colors.black, fontStyle: FontStyle.italic)),
+                Text(
+                  "Та" + level + "-р үеийг амжилттай давлаа.",
+                  style: TextStyle(fontSize: 25, color: Colors.black, fontStyle: FontStyle.italic),
+                  textAlign: TextAlign.center,
+                ),
                 Text("Та үргэлжлүүлэх үү?", style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
                 Center(
                   child: GifView.asset('lib/assets/chapterImages/dancing.gif', width: 200, height: 200, frameRate: 10),
@@ -62,14 +73,39 @@ class _DialogsState extends State<Dialogs> {
                           backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
                         ),
                         onPressed: () {
-                          //if (widget.screenNum == 1)
+                          Shared.prefs.setInt(("level" + widget.screenNum.toString()), (int.parse(level) + 1) <= 15 ? (int.parse(level) + 1) : 15);
                           Navigator.pop(context);
-                          Navigator.pushReplacement<void, void>(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) => const GameScreen(title: "Бүлэг-1"),
-                            ),
-                          );
+                          if (int.parse(level) + 1 == 16) {
+                            Navigator.pop(context);
+                          } else if (widget.screenNum == 1) {
+                            Navigator.pushReplacement<void, void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => const GameScreen(title: "Бүлэг-1"),
+                              ),
+                            );
+                          } else if (widget.screenNum == 2) {
+                            Navigator.pushReplacement<void, void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => const GameScreen2(),
+                              ),
+                            );
+                          } else if (widget.screenNum == 3) {
+                            Navigator.pushReplacement<void, void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => const GameScreen3(),
+                              ),
+                            );
+                          } else if (widget.screenNum == 4) {
+                            Navigator.pushReplacement<void, void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => const GameScreen4(),
+                              ),
+                            );
+                          }
                         },
                         child: Row(
                           children: [
@@ -181,7 +217,6 @@ class _DialogsState extends State<Dialogs> {
                       TextButton(
                         onPressed: () {
                           if (widget.result == widget.answer) {
-                            print("hariu mun baina");
                             if (widget.submitCorrectAnswer != null) {
                               widget.submitCorrectAnswer!();
                             }
