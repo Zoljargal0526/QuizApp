@@ -27,9 +27,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Shared.prefs = await SharedPreferences.getInstance();
-  Shared.prefs.setInt("level2", 1);
+  /*Shared.prefs.setInt("level2", 1);
   Shared.prefs.setInt("level3", 1);
-  Shared.prefs.setInt("level4", 1);
+  Shared.prefs.setInt("level4", 1);*/
   Firebase.initializeApp().whenComplete(() {
     WidgetsBinding.instance?.addObserver(_WidgetsBindingObserver());
     Shared.db = Database();

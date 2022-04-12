@@ -116,7 +116,7 @@ class GameScreen2State extends State<GameScreen2> {
   void getListWordData() async {
     Set<int> setOfInts = Set();
     while (setOfInts.length < 4) {
-      setOfInts.add(Random().nextInt(5) + 1);
+      setOfInts.add(Random().nextInt(213) + 1);
     }
     r = Random().nextInt(3); // 0 1 2 3
     words = List.empty(growable: true);

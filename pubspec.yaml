@@ -80,6 +80,7 @@ flutter:
     - lib/assets/mainMenu/
     - lib/assets/dialogImage/
     - lib/assets/gameScreen2images/
+    - lib/assets/gameScreen3images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
