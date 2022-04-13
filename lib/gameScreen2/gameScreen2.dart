@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -6,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import '../gameScreen/word.dart';
+import '../shared_pref.dart';
 import 'image_container.dart';
 
 class GameScreen2 extends StatefulWidget {
@@ -17,6 +17,7 @@ class GameScreen2 extends StatefulWidget {
 late DatabaseReference ref;
 List<Word> words = List.empty(growable: true);
 int r = 0;
+int k = 0;
 
 class GameScreen2State extends State<GameScreen2> {
   @override
@@ -115,35 +116,19 @@ class GameScreen2State extends State<GameScreen2> {
 
   void getListWordData() async {
     Set<int> setOfInts = Set();
+    k = (await Shared.db.countWords())!;
+    print(k);
     while (setOfInts.length < 4) {
-      setOfInts.add(Random().nextInt(213) + 1);
+      setOfInts.add(Random().nextInt(k - 1) + 1);
     }
     r = Random().nextInt(3); // 0 1 2 3
     words = List.empty(growable: true);
     for (var i in setOfInts.toList()) {
-      var w = await (getSearchWord(i)) ?? Word();
+      var w = await (Shared.db.getSearchWordById(i)) ?? Word();
       words.add(w);
     }
     setState(() {
       words;
     });
-  }
-
-  Future<Word?> getSearchWord(int value) async {
-    ref = FirebaseDatabase.instance.ref("words");
-    var data = await ref.orderByChild("/id").equalTo(value).once();
-    //var data = await ref.limitToFirst(value).once();
-    var refData = data.snapshot.value as Map? ?? {};
-    var rData = refData.values.first; // river:{name="river"} iig {name="river"} bolgoson
-    //print(rData["name"]);
-    if (rData.isNotEmpty) {
-      Word word = Word(name: "", imagePath: "", mon: "");
-      word.name = rData["name"];
-      word.imagePath = rData["image"];
-      word.mon = rData["mon"];
-      word.id = rData["id"].toString();
-      return word;
-    }
-    return null;
   }
 }

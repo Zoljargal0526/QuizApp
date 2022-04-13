@@ -60,6 +60,25 @@ class Database {
     return null;
   }
 
+  Future<Word?> getSearchWordById(int value) async {
+    ref = FirebaseDatabase.instance.ref("words");
+    //var data = await ref.orderByChild("/id").equalTo(value).once();
+    var data = await ref.orderByChild("/id").equalTo(value).once();
+    //var data = await ref.limitToFirst(value).once();
+    var refData = data.snapshot.value as Map? ?? {};
+    var rData = refData.values.first; // river:{name="river"} iig {name="river"} bolgoson
+    //print(rData["name"]);
+    if (rData.isNotEmpty) {
+      Word word = Word(name: "", imagePath: "", mon: "");
+      word.name = rData["name"];
+      word.imagePath = rData["image"];
+      word.mon = rData["mon"];
+      word.id = rData["id"].toString();
+      return word;
+    }
+    return null;
+  }
+
   Future<ChapterDataModel?> getChapterData(String title, String level) async {
     if (title == "Бүлэг-1") {
       title = "chapter1";
@@ -74,7 +93,6 @@ class Database {
     var data = await ref.child("level" + level).once();
     chapter = ChapterDataModel(result: '', levelNum: level, chapterTitle: title, hint: '', help: '', backgroundPath: "");
     var refData = data.snapshot.value as Map;
-    print("worked");
     if (refData.isNotEmpty) {
       chapter.result = refData["result"] as String? ?? "";
       chapter.hint = refData["hint"];
@@ -118,5 +136,12 @@ class Database {
       chapter4.backgroundPath = refData["image"];
       return chapter4;
     }
+  }
+
+  Future<int?> countWords() async {
+    ref = FirebaseDatabase.instance.ref("words");
+    var data = await ref.once();
+    int k = data.snapshot.children.length;
+    return k;
   }
 }

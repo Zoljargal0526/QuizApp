@@ -12,4 +12,5 @@ List<ChapterModel> chaptersList = [
   ChapterModel(3, "Бүлэг-3", "Ойн амьтадтай танилцаарай ", "lib/assets/chapterImages/chapter3.png"),
   ChapterModel(4, "Бүлэг-4", "Тэр юу хийж байна вэ? ", "lib/assets/chapterImages/chapter4.png"),
   ChapterModel(5, "Бүлэг-5", "Минутанд хэдэн үг уншиж чадах вэ? ", "lib/assets/chapterImages/chapter4.png"),
+  ChapterModel(6, "Үгсийн сан", "Энэ аpp-д ашигласан үгс", "lib/assets/chapterImages/chapter4.png"),
 ];

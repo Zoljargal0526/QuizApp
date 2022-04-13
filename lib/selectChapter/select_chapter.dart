@@ -8,6 +8,7 @@ import 'package:quiz_app/gameScreen3/gameScreen3.dart';
 import 'package:quiz_app/homepage.dart';
 import 'package:quiz_app/selectChapter/chapter_model.dart';
 import 'package:quiz_app/shared_pref.dart';
+import 'package:quiz_app/showWords.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 import '../gameScreen4/gameScreen4.dart';
@@ -209,7 +210,9 @@ class _SelectChapterState extends State<SelectChapter> {
                           ? GameScreen3()
                           : chapterName == "Бүлэг-4"
                               ? GameScreen4()
-                              : GameScreen5();
+                              : chapterName == "Бүлэг-5"
+                                  ? GameScreen5()
+                                  : ShowWords();
             }));
   }
 }

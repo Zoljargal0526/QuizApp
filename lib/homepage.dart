@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
                 onPressed: () async {
                   if (txtController.text.isNotEmpty) {
-                    v = (await Shared.db.getWordData(txtController.text))!;
+                    v = (await Shared.db.getSearchWordById(int.parse(txtController.text)))!;
                     setState(() {});
                   }
                 },
