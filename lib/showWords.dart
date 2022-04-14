@@ -11,8 +11,9 @@ class ShowWords extends StatefulWidget {
   State<ShowWords> createState() => _ShowWordsState();
 }
 
+List<Word> words = List.empty(growable: true);
+
 class _ShowWordsState extends State<ShowWords> {
-  List<Word> words = List.empty(growable: true);
   int max = 0;
   int start = 1;
   int last = 0;
@@ -38,8 +39,8 @@ class _ShowWordsState extends State<ShowWords> {
     last = start + 15;
     max = (await Shared.db.countWords()) ?? 0;
     //max = 16;
-    if (last > max) {
-      last = max - 1;
+    if (last > max - 5) {
+      last = max - 5;
     }
     for (int i = start; i < last; i++) {
       var w = await (Shared.db.getSearchWordById(i)) ?? Word();
@@ -147,9 +148,25 @@ class MySearchDelegate extends SearchDelegate {
     return Container();
   }
 
+  // List<String> searchResults = ["aa", "ab", "bb", "bc"];
+  // List<Word> searchResults = words;
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> suggestions = [''];
-    return Container();
+    List<Word> suggestions = words.where((searchResult) {
+      final result = searchResult.name.toLowerCase();
+      final input = query.toLowerCase();
+      return result.contains(input);
+    }).toList();
+    return ListView.builder(
+        itemCount: suggestions.length,
+        itemBuilder: (context, index) {
+          final suggestion = suggestions[index];
+          return ListTile(
+            title: Text(suggestion.name),
+            onTap: () {
+              query = suggestion.name;
+            },
+          );
+        });
   }
 }

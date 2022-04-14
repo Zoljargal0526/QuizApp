@@ -126,8 +126,8 @@ class _SelectChapterState extends State<SelectChapter> {
                                     borderRadius: BorderRadius.all(Radius.circular(20)),
                                     color: Colors.white.withOpacity(0.5),
                                   ),
-                                  height: 60,
-                                  width: 100,
+                                  height: 70,
+                                  width: 120,
                                   child: FittedBox(
                                       child: index == 0
                                           ? Text(level + "/15")
@@ -137,7 +137,9 @@ class _SelectChapterState extends State<SelectChapter> {
                                                   ? Text(level3 + "/15")
                                                   : index == 3
                                                       ? Text(level4 + "/15")
-                                                      : Text("level 5")),
+                                                      : index == 4
+                                                          ? Text("Минутын уншлага")
+                                                          : Text("Үгсийн сан")),
                                 ),
                               ),
                             ],

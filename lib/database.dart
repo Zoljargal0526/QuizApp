@@ -21,14 +21,10 @@ class Database {
       database = FirebaseDatabase.instance;
     });
   }
-  addData(String data) {
+  addData(String data, String mon, String id) {
     ref = FirebaseDatabase.instance.ref("words");
-    ref.child(data).set({
-      'name': data,
-      "image": "https://static.scientificamerican.com/sciam/cache/file/7A715AD8-449D-4B5A-ABA2C5D92D9B5A21_source.png",
-      'audio_file': "example.com",
-      'quiz': false
-    });
+    String image = mon.replaceAll(' ', '');
+    ref.child(data).set({'name': data, "image": "images/$image.png", 'mon': mon, 'id': id});
   }
 
   Future<Word?> getWordData(String value) async {
