@@ -212,7 +212,7 @@ class _SelectChapterState extends State<SelectChapter> {
                           ? GameScreen3()
                           : chapterName == "Бүлэг-4"
                               ? GameScreen4()
-                              : chapterName == "Бүлэг-5"
+                              : chapterName == "Нэмэлт бүлэг"
                                   ? GameScreen5()
                                   : ShowWords();
             }));
