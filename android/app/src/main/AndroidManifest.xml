@@ -2,10 +2,9 @@
     package="com.example.quiz_app">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
-
         android:name="androidx.multidex.MultiDexApplication"
-        android:label="quiz_app"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Үсгэн Ертөнц"
+        android:icon="@drawable/icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"

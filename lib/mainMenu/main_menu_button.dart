@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:quiz_app/onBoardingScreen.dart';
 import 'package:quiz_app/selectChapter/select_chapter.dart';
 
 import 'introduction_sheet.dart';
@@ -32,11 +33,12 @@ class MainMenuButton extends StatelessWidget {
           if (name == "Гарах") {
             exit(0);
           } else if (name == "Тоглох заавар") {
-            showModalBottomSheet(
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>onBoardingScreen()));
+            /*showModalBottomSheet(
                 isScrollControlled: true,
                 context: context,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-                builder: (context) => IntroductionSheet());
+                builder: (context) => IntroductionSheet());*/
           } else if (name == "Эхлэх") {
             //Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectChapter()));
             Navigator.push(

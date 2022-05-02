@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               controller: idPlusNum,
               decoration: InputDecoration(hintText: "id + integer"),
             ),
-            Text(Shared.prefs.getInt('level').toString()),
+            Text(Shared.prefs.getInt('level1').toString()),
             SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () async {
                   setState(() {
                     //int? level = Shared.prefs.getInt('level')! + 1;
-                    Shared.prefs.setInt('level', 1);
+                    Shared.prefs.setInt('level1', 1);
                     Shared.prefs.setInt('level2', 1);
                     Shared.prefs.setInt('level3', 1);
                     Shared.prefs.setInt('level4', 1);

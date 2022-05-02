@@ -22,7 +22,7 @@ class SelectChapter extends StatefulWidget {
 }
 
 class _SelectChapterState extends State<SelectChapter> {
-  String level = "";
+  String level1 = "";
   String level2 = "";
   String level3 = "";
   String level4 = "";
@@ -33,13 +33,13 @@ class _SelectChapterState extends State<SelectChapter> {
   }
 
   void getLevels() {
-    level = Shared.prefs.getInt('level').toString();
+    level1 = Shared.prefs.getInt('level1').toString();
     level2 = Shared.prefs.getInt('level2').toString();
     level3 = Shared.prefs.getInt('level3').toString();
     level4 = Shared.prefs.getInt('level4').toString();
     if (mounted) {
       setState(() {
-        level;
+        level1;
         level2;
         level3;
         level4;
@@ -130,13 +130,13 @@ class _SelectChapterState extends State<SelectChapter> {
                                   width: 120,
                                   child: FittedBox(
                                       child: index == 0
-                                          ? Text(level + "/15")
+                                          ? Text(level1 + "/15")
                                           : index == 1
-                                              ? Text(level2 + "/15")
+                                              ? Text(level2 + "/30")
                                               : index == 2
-                                                  ? Text(level3 + "/15")
+                                                  ? Text(level3 + "/30")
                                                   : index == 3
-                                                      ? Text(level4 + "/15")
+                                                      ? Text(level4 + "/30")
                                                       : index == 4
                                                           ? Text("Минутын уншлага")
                                                           : Text("Үгсийн сан")),

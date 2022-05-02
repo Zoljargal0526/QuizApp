@@ -77,7 +77,7 @@ class _GameScreen5State extends State<GameScreen5> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text("Чи хэдэн үг уншиж чадах вэ?"),),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           isStarted ? reset() : startTimer();
@@ -86,6 +86,7 @@ class _GameScreen5State extends State<GameScreen5> {
         child: isStarted ? Icon(Icons.stop) : Icon(Icons.play_arrow),
       ),
       body: Container(
+        color: Colors.white38,
         child: Column(
           children: [
             AnimatedContainer(
@@ -114,12 +115,12 @@ class _GameScreen5State extends State<GameScreen5> {
                           ShowDialog("Алдаа", "Таны уншсан үгийн тоог мэдэх боложгүй байна. Та эхлээд цаг гүйлгэн уншиж эхэлнэ үү!");
                         }
                       },
-                      child: AutoSizeText(
-                        result[w],
-                        maxLines: 1,
-                        minFontSize: 25,
-                        maxFontSize: 30,
-                        style: TextStyle(color: Colors.black),
+                      child:AutoSizeText(
+                          result[w],
+                          maxLines: 1,
+                          minFontSize: 25,
+                          maxFontSize: 30,
+                          style: TextStyle(color: Colors.black),
                       ),
                     ),
                 ]),

@@ -41,7 +41,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     chapTitle = widget.title;
-    level = Shared.prefs.getInt('level').toString();
+    level = Shared.prefs.getInt('level1').toString();
     getChapterdata(chapTitle, level);
     super.initState();
   }
@@ -95,7 +95,7 @@ class _GameScreenState extends State<GameScreen> {
                         ),
                       ),
                     ),
-                  if (win)
+                  if (win&&level==1)
                     Positioned.fill(
                         child: Level1(
                       url: Shared.levelsLottie[int.parse(level)],

@@ -89,10 +89,7 @@ class _ShowWordsState extends State<ShowWords> {
                         },
                         tileColor: Colors.white,
                         leading: Icon(Icons.list),
-                        trailing: Text(
-                          words[index].id,
-                          style: TextStyle(color: Colors.green, fontSize: 15),
-                        ),
+                        trailing: Icon(Icons.arrow_downward),
                         title: Text(words[index].mon)),
                     AnimatedContainer(
                       height: tappedIndex == index ? height : 0,
