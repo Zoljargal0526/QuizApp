@@ -25,9 +25,11 @@ class MainMenu extends StatelessWidget {
               height: 200,
               child: Stack(children: [
                 Positioned.fill(
-                    child: FittedBox(
-                        child: Lottie.asset(
-                            "lib/assets/mainMenu/children-holding-letters.json"))),
+                    child: Container(padding: EdgeInsets.only(top: 20),
+                      child: FittedBox(
+                          child: Lottie.asset(
+                              "lib/assets/mainMenu/children-holding-letters.json")),
+                    )),
                 Positioned(
                     left: 20,
                     right: 20,

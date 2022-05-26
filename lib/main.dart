@@ -21,18 +21,6 @@ class _WidgetsBindingObserver extends WidgetsBindingObserver {
     }
   }
 }
-//tsum hutulburig sudlah
-// uyeer taslah heseg nemeh
-//dvrem tailbarlah
-//jijig zohioh bichleh hiih nemeh
-//tseej bichihg hiih heseg nemj bolno
-//zurag daraad aldaa zasah maygin ym nemj bolno
-//font tomruulj bichih bolomjoor hangah
-//huwiaraa hadgaldg boloh
-//notification seruuleg nemeh bolomj
-//sonirholtoi ishlel medeellin heseg notificatioin ugdug boloh
-//hoolnii talaarh medeelel hurgeh
-//huwtsas ewheh daraalal
 Future<void> main() async {
   Paint.enableDithering = true;
   WidgetsFlutterBinding.ensureInitialized();

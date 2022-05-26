@@ -26,13 +26,11 @@ class Database {
     String image = mon.replaceAll(' ', '');
     ref.child(data).set({'name': data, "image": "images/$image.png", 'mon': mon, 'id': id});
   }
-
   Future<Word?> getWordData(String value) async {
     ref = FirebaseDatabase.instance.ref("words");
     var data = await ref.child(value).once();
     word = Word(name: "", imagePath: "", mon: "");
     var refData = data.snapshot.value as Map? ?? {};
-
     if (refData.isNotEmpty) {
       word.name = refData["name"];
       word.imagePath = refData["image"];
