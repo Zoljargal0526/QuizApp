@@ -54,7 +54,11 @@ class _GameScreen4State extends State<GameScreen4> {
               children: [
                 IconButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const GameScreen4()));
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const GameScreen4()));
                     },
                     icon: const Icon(Icons.refresh)),
                 const Text(
@@ -79,14 +83,26 @@ class _GameScreen4State extends State<GameScreen4> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.blue,
-                      border: Border.all(color: Colors.yellow, style: BorderStyle.solid, width: 3),
+                      border: Border.all(
+                          color: Colors.yellow,
+                          style: BorderStyle.solid,
+                          width: 3),
                     ),
-                    child: BackImagePath != "" ? Image(image: NetworkImage(BackImagePath), fit: BoxFit.cover) : const Center(child: CircularProgressIndicator()),
+                    child: BackImagePath != ""
+                        ? Image(
+                            image: NetworkImage(BackImagePath),
+                            fit: BoxFit.cover)
+                        : const Center(child: CircularProgressIndicator()),
                   )),
               Expanded(
                 flex: 2,
                 child: Container(
-                  decoration: const BoxDecoration(color: Colors.blue, image: DecorationImage(image: AssetImage("lib/assets/chapterImages/chap4back.png"), fit: BoxFit.cover)),
+                  decoration: const BoxDecoration(
+                      color: Colors.blue,
+                      image: DecorationImage(
+                          image:
+                              AssetImage("assets/chapterImages/chap4back.png"),
+                          fit: BoxFit.cover)),
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -107,10 +123,14 @@ class _GameScreen4State extends State<GameScreen4> {
                       ),
                       const SizedBox(height: 15),
                       ElevatedButton(
-                          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.green)),
                           onPressed: () {
                             Timer(const Duration(seconds: 2), () {
-                              if (c.word1 == GameScreen4.check[0] && c.word2 == GameScreen4.check[1] && c.word3 == GameScreen4.check[2]) {
+                              if (c.word1 == GameScreen4.check[0] &&
+                                  c.word2 == GameScreen4.check[1] &&
+                                  c.word3 == GameScreen4.check[2]) {
                                 showDialog(
                                     context: context,
                                     builder: (_) => Dialogs(

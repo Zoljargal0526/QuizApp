@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'audio_player.dart';
 import 'database.dart';
+import 'firebase_options.dart';
 import 'mainMenu/main_menu.dart';
 
 class _WidgetsBindingObserver extends WidgetsBindingObserver {
@@ -31,7 +32,9 @@ Future<void> main() async {
   /*Shared.prefs.setInt("level2", 1);
   Shared.prefs.setInt("level3", 1);
   Shared.prefs.setInt("level4", 1);*/
-  await Firebase.initializeApp().whenComplete(() {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  ).whenComplete(() {
     print("completed");
   });
   WidgetsBinding.instance.addObserver(_WidgetsBindingObserver());

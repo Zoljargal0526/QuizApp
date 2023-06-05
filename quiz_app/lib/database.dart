@@ -24,8 +24,10 @@ class Database {
   addData(String data, String mon, String id) {
     ref = FirebaseDatabase.instance.ref("words");
     String image = mon.replaceAll(' ', '');
-    ref.child(data).set({'name': data, "image": "images/$image.png", 'mon': mon, 'id': id});
+    ref.child(data).set(
+        {'name': data, "image": "images/$image.png", 'mon': mon, 'id': id});
   }
+
   Future<Word?> getWordData(String value) async {
     ref = FirebaseDatabase.instance.ref("words");
     var data = await ref.child(value).once();
@@ -46,9 +48,9 @@ class Database {
     var refData = data.snapshot.value as Map? ?? {};
     word = Word(name: "", imagePath: "", mon: "");
     if (refData.isNotEmpty) {
-      word.name = refData["name"];
-      word.imagePath = refData["image"];
-      word.mon = refData["mon"];
+      word.name = refData["name"] ?? '';
+      word.imagePath = refData["image"] ?? '';
+      word.mon = refData["mon"] ?? '';
       return word;
     }
     return null;
@@ -60,7 +62,8 @@ class Database {
     var data = await ref.orderByChild("/id").equalTo(value).once();
     //var data = await ref.limitToFirst(value).once();
     var refData = data.snapshot.value as Map? ?? {};
-    var rData = refData.values.first; // river:{name="river"} iig {name="river"} bolgoson
+    var rData = refData
+        .values.first; // river:{name="river"} iig {name="river"} bolgoson
     //print(rData["name"]);
     if (rData.isNotEmpty) {
       Word word = Word(name: "", imagePath: "", mon: "");
@@ -85,7 +88,13 @@ class Database {
     }
     ref = FirebaseDatabase.instance.ref("chapters").child(title);
     var data = await ref.child("level$level").once();
-    chapter = ChapterDataModel(result: '', levelNum: level, chapterTitle: title, hint: '', help: '', backgroundPath: "");
+    chapter = ChapterDataModel(
+        result: '',
+        levelNum: level,
+        chapterTitle: title,
+        hint: '',
+        help: '',
+        backgroundPath: "");
     var refData = data.snapshot.value as Map;
     if (refData.isNotEmpty) {
       chapter.result = refData["result"] as String? ?? "";
@@ -100,7 +109,13 @@ class Database {
   Future<ChapterDataModel3?> getChapterData3(String level) async {
     ref = FirebaseDatabase.instance.ref("chapters").child("chapter3");
     var data = await ref.child("level$level").once();
-    chapter3 = ChapterDataModel3(result: '', hint1: "", hint2: "", hint3: '', backgroundPath: "", blackbackgroundPath: "");
+    chapter3 = ChapterDataModel3(
+        result: '',
+        hint1: "",
+        hint2: "",
+        hint3: '',
+        backgroundPath: "",
+        blackbackgroundPath: "");
     var refData = data.snapshot.value as Map;
 
     if (refData.isNotEmpty) {

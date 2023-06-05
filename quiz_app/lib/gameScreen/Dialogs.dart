@@ -49,98 +49,129 @@ class _DialogsState extends State<Dialogs> {
               Positioned.fill(
                 child: Container(
                   decoration: const BoxDecoration(
-                    image: DecorationImage(image: AssetImage("lib/assets/dialogImage/winBack.png"), fit: BoxFit.cover),
+                    image: DecorationImage(
+                        image: AssetImage("assets/dialogImage/winBack.png"),
+                        fit: BoxFit.cover),
                   ),
-                  child: Lottie.asset("lib/assets/dialogImage/98998-bubble-confettis.json"),
+                  child: Lottie.asset(
+                      "assets/dialogImage/98998-bubble-confettis.json"),
                 ),
               ),
-              Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
-                const Text("Таны хариулт зөв байна", style: TextStyle(fontSize: 25, color: Colors.black, fontStyle: FontStyle.italic)),
-                Text(
-                  "Та$level-р үеийг амжилттай давлаа.",
-                  style: const TextStyle(fontSize: 25, color: Colors.black, fontStyle: FontStyle.italic),
-                  textAlign: TextAlign.center,
-                ),
-                const Text("Та үргэлжлүүлэх үү?", style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
-                Center(
-                  child: GifView.asset('lib/assets/chapterImages/dancing.gif', width: 200, height: 200, frameRate: 10),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-                        ),
-                        onPressed: () {
-                          Shared.prefs.setInt(("level${widget.screenNum}"), (int.parse(level) + 1) <= 15 ? (int.parse(level) + 1) : 15);
-                          Navigator.pop(context);
-                          if (int.parse(level) + 1 == 16) {
-                            Navigator.pop(context);
-                          } else if (widget.screenNum == 1) {
-                            Navigator.pushReplacement<void, void>(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) => const GameScreen(title: "Бүлэг-1"),
-                              ),
-                            );
-                          } else if (widget.screenNum == 2) {
-                            Navigator.pushReplacement<void, void>(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) => const GameScreen2(),
-                              ),
-                            );
-                          } else if (widget.screenNum == 3) {
-                            Navigator.pushReplacement<void, void>(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) => const GameScreen3(),
-                              ),
-                            );
-                          } else if (widget.screenNum == 4) {
-                            Navigator.pushReplacement<void, void>(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) => const GameScreen4(),
-                              ),
-                            );
-                          }
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: Colors.yellow,
+                    const Text("Таны хариулт зөв байна",
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.black,
+                            fontStyle: FontStyle.italic)),
+                    Text(
+                      "Та$level-р үеийг амжилттай давлаа.",
+                      style: const TextStyle(
+                          fontSize: 25,
+                          color: Colors.black,
+                          fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.center,
+                    ),
+                    const Text("Та үргэлжлүүлэх үү?",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold)),
+                    Center(
+                      child: GifView.asset('assets/chapterImages/dancing.gif',
+                          width: 200, height: 200, frameRate: 10),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.green),
                             ),
-                            Text(
-                              "Тийм",
-                              style: TextStyle(color: Colors.yellow),
+                            onPressed: () {
+                              Shared.prefs.setInt(
+                                  ("level${widget.screenNum}"),
+                                  (int.parse(level) + 1) <= 15
+                                      ? (int.parse(level) + 1)
+                                      : 15);
+                              Navigator.pop(context);
+                              if (int.parse(level) + 1 == 16) {
+                                Navigator.pop(context);
+                              } else if (widget.screenNum == 1) {
+                                Navigator.pushReplacement<void, void>(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        const GameScreen(title: "Бүлэг-1"),
+                                  ),
+                                );
+                              } else if (widget.screenNum == 2) {
+                                Navigator.pushReplacement<void, void>(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        const GameScreen2(),
+                                  ),
+                                );
+                              } else if (widget.screenNum == 3) {
+                                Navigator.pushReplacement<void, void>(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        const GameScreen3(),
+                                  ),
+                                );
+                              } else if (widget.screenNum == 4) {
+                                Navigator.pushReplacement<void, void>(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        const GameScreen4(),
+                                  ),
+                                );
+                              }
+                            },
+                            child: const Row(
+                              children: [
+                                Icon(
+                                  Icons.check_circle_outline,
+                                  color: Colors.yellow,
+                                ),
+                                Text(
+                                  "Тийм",
+                                  style: TextStyle(color: Colors.yellow),
+                                ),
+                              ],
+                            )),
+                        ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(Colors.red),
                             ),
-                          ],
-                        )),
-                    ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MainMenu()), (Route<dynamic> route) => false);
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Icons.cancel,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              "Үгүй",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        )),
-                  ],
-                )
-              ]),
+                            onPressed: () {
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (context) => const MainMenu()),
+                                  (Route<dynamic> route) => false);
+                            },
+                            child: const Row(
+                              children: [
+                                Icon(
+                                  Icons.cancel,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  "Үгүй",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            )),
+                      ],
+                    )
+                  ]),
             ]),
           ])
         : widget.type == "lose"
@@ -148,20 +179,37 @@ class _DialogsState extends State<Dialogs> {
                 actions: [
                   Container(
                     decoration: const BoxDecoration(
-                      image: DecorationImage(image: AssetImage("lib/assets/dialogImage/loseBack.png"), fit: BoxFit.cover),
+                      image: DecorationImage(
+                          image: AssetImage("assets/dialogImage/loseBack.png"),
+                          fit: BoxFit.cover),
                     ),
                     child: Column(
                       children: [
-                        const Text("Буруу хариулт байна", style: TextStyle(fontSize: 25, color: Colors.white, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold)),
-                        const Text("Дахин хариулах уу?", style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
-                        SizedBox(width: 200, height: 200, child: Lottie.asset("lib/assets/dialogImage/loseLottie.json")),
+                        const Text("Буруу хариулт байна",
+                            style: TextStyle(
+                                fontSize: 25,
+                                color: Colors.white,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold)),
+                        const Text("Дахин хариулах уу?",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(
+                            width: 200,
+                            height: 200,
+                            child: Lottie.asset(
+                                "assets/dialogImage/loseLottie.json")),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             ElevatedButton(
                                 style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.green),
                                 ),
                                 onPressed: () {
                                   Navigator.pop(context);
@@ -180,10 +228,15 @@ class _DialogsState extends State<Dialogs> {
                                 )),
                             ElevatedButton(
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.red),
                               ),
                               onPressed: () {
-                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MainMenu()), (Route<dynamic> route) => false);
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) => const MainMenu()),
+                                    (Route<dynamic> route) => false);
                               },
                               child: const Row(
                                 children: [
@@ -233,7 +286,9 @@ class _DialogsState extends State<Dialogs> {
                           }
                         },
                         child: Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.blue),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.blue),
                             padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                             child: const Row(children: [
                               Icon(
@@ -251,7 +306,9 @@ class _DialogsState extends State<Dialogs> {
                           Navigator.pop(context);
                         },
                         child: Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.red),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.red),
                             padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                             child: const Row(children: [
                               Icon(

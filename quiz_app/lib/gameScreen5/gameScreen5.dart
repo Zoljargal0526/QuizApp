@@ -40,7 +40,8 @@ class _GameScreen5State extends State<GameScreen5> {
       setState(() {
         final seconds = duration.inSeconds + addSeconds;
         if (seconds == 11) {
-          ShowDialog("Цаг боллоо.", 'Хамгийн сүүлд уншсан үг дээр удаан дарж уншсан үгийнхээ тоог хараарай');
+          ShowDialog("Цаг боллоо.",
+              'Хамгийн сүүлд уншсан үг дээр удаан дарж уншсан үгийнхээ тоог хараарай');
           isDone = true;
           reset();
         } else {
@@ -61,7 +62,8 @@ class _GameScreen5State extends State<GameScreen5> {
   void ShowDialog(String title, String content) {
     showDialog(
         context: context,
-        builder: (_) => AlertDialog(title: Text(title), content: Text(content), actions: [
+        builder: (_) =>
+            AlertDialog(title: Text(title), content: Text(content), actions: [
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -78,13 +80,16 @@ class _GameScreen5State extends State<GameScreen5> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Чи хэдэн үг уншиж чадах вэ?"),),
+      appBar: AppBar(
+        title: const Text("Чи хэдэн үг уншиж чадах вэ?"),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           isStarted ? reset() : startTimer();
           height = MediaQuery.of(context).size.height * 0.15;
         },
-        child: isStarted ? const Icon(Icons.stop) : const Icon(Icons.play_arrow),
+        child:
+            isStarted ? const Icon(Icons.stop) : const Icon(Icons.play_arrow),
       ),
       body: Container(
         color: Colors.white38,
@@ -100,28 +105,33 @@ class _GameScreen5State extends State<GameScreen5> {
                   '${duration.inSeconds}',
                   style: const TextStyle(color: Colors.black, fontSize: 60),
                 ),
-                if (isStarted) Lottie.asset("lib/assets/gameScreen3images/flowTimer.json", fit: BoxFit.cover),
+                if (isStarted)
+                  Lottie.asset("assets/gameScreen3images/flowTimer.json",
+                      fit: BoxFit.cover),
               ]),
             ),
             Expanded(
                 child: Container(
               child: SingleChildScrollView(
-                child: Wrap(spacing: 5, alignment: WrapAlignment.start, children: [
+                child:
+                    Wrap(spacing: 5, alignment: WrapAlignment.start, children: [
                   for (int w = 0; w < result.length; w++)
                     GestureDetector(
                       onLongPress: () {
                         if (isDone) {
-                          ShowDialog("Баяр хүргэе", "Таны уншсан үгийн тоо:${w + 1}");
+                          ShowDialog(
+                              "Баяр хүргэе", "Таны уншсан үгийн тоо:${w + 1}");
                         } else {
-                          ShowDialog("Алдаа", "Таны уншсан үгийн тоог мэдэх боложгүй байна. Та эхлээд цаг гүйлгэн уншиж эхэлнэ үү!");
+                          ShowDialog("Алдаа",
+                              "Таны уншсан үгийн тоог мэдэх боложгүй байна. Та эхлээд цаг гүйлгэн уншиж эхэлнэ үү!");
                         }
                       },
-                      child:AutoSizeText(
-                          result[w],
-                          maxLines: 1,
-                          minFontSize: 25,
-                          maxFontSize: 30,
-                          style: const TextStyle(color: Colors.black),
+                      child: AutoSizeText(
+                        result[w],
+                        maxLines: 1,
+                        minFontSize: 25,
+                        maxFontSize: 30,
+                        style: const TextStyle(color: Colors.black),
                       ),
                     ),
                 ]),

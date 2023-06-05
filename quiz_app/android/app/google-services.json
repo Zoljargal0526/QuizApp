@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "246883194844",
+    "firebase_url": "https://quiz-app-zolo-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "quiz-app-zolo",
+    "storage_bucket": "quiz-app-zolo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246883194844:android:db0b002f6ef114a429e119",
+        "android_client_info": {
+          "package_name": "com.example.quiz_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246883194844-t29r7qjj1f2qp3t0rc7i2v16d92me79q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDboHbUkNqBntkkkTLCD5pVCgMlVGzjd8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246883194844-t29r7qjj1f2qp3t0rc7i2v16d92me79q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "246883194844-408k89e44l3oru2v4bg1112nj63frldo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.quizApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

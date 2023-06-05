@@ -22,7 +22,10 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false,title: const Center(child: Text("Тоглох заавар")),),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Center(child: Text("Тоглох заавар")),
+        ),
         body: Container(
           padding: const EdgeInsets.only(bottom: 80),
           child: PageView(
@@ -40,163 +43,245 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 color: Colors.indigo,
-                child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset(
-                          "lib/assets/onBoardImages/level1-1.PNG",
-                          width: MediaQuery.of(context).size.width*0.4,
-                          height: MediaQuery.of(context).size.height*0.6,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.asset(
+                              "assets/onBoardImages/level1-1.PNG",
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.6,
+                            ),
+                            const Expanded(
+                                child: AutoSizeText(
+                              "Энэ бүлэг нь 15-н үетэй. Асуултыг уншаад үг бүтээж хариултыг олно.",
+                              maxLines: 6,
+                            )),
+                          ],
                         ),
-                        const Expanded(child: AutoSizeText("Энэ бүлэг нь 15-н үетэй. Асуултыг уншаад үг бүтээж хариултыг олно.",maxLines: 6,)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
-                      Image.asset(
-                        "lib/assets/onBoardImages/level1.PNG",
-                        width: MediaQuery.of(context).size.width*0.4,
-                        height: MediaQuery.of(context).size.height*0.6,
-                      ),const Expanded(child: AutoSizeText("Сонгосон хариулт үгийн санд байвал зургаар илэрхийлэгдэнэ.",maxLines: 6,)),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Image.asset(
+                                "assets/onBoardImages/level1.PNG",
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                              ),
+                              const Expanded(
+                                  child: AutoSizeText(
+                                "Сонгосон хариулт үгийн санд байвал зургаар илэрхийлэгдэнэ.",
+                                maxLines: 6,
+                              )),
+                            ]),
+                      ),
                     ]),
-                  ),
-                ]),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 color: Colors.indigo,
-                child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset(
-                          "lib/assets/onBoardImages/level2.PNG",
-                          width: MediaQuery.of(context).size.width*0.4,
-                          height: MediaQuery.of(context).size.height*0.6,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.asset(
+                              "assets/onBoardImages/level2.PNG",
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.6,
+                            ),
+                            const Expanded(
+                                child: AutoSizeText(
+                              "Энэ бүлэг нь 30-н үетэй. Асуултыг уншаад 4-н зурагнаас зөвийг олно.",
+                              maxLines: 6,
+                            )),
+                          ],
                         ),
-                        const Expanded(child: AutoSizeText("Энэ бүлэг нь 30-н үетэй. Асуултыг уншаад 4-н зурагнаас зөвийг олно.",maxLines: 6,)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
-                      Image.asset(
-                        "lib/assets/onBoardImages/level4.PNG",
-                        width: MediaQuery.of(context).size.width*0.4,
-                        height: MediaQuery.of(context).size.height*0.6,
-                      ),const Expanded(child: AutoSizeText("Энэ үе нь 30-н үетэй бөгөөд зургийн харан өгөгдсөн үгээр өгүүлбэр зохионо.",maxLines: 6,)),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Image.asset(
+                                "assets/onBoardImages/level4.PNG",
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                              ),
+                              const Expanded(
+                                  child: AutoSizeText(
+                                "Энэ үе нь 30-н үетэй бөгөөд зургийн харан өгөгдсөн үгээр өгүүлбэр зохионо.",
+                                maxLines: 6,
+                              )),
+                            ]),
+                      ),
                     ]),
-                  ),
-                ]),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 color: Colors.indigo,
-                child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset(
-                          "lib/assets/onBoardImages/level3.PNG",
-                          width: MediaQuery.of(context).size.width*0.4,
-                          height: MediaQuery.of(context).size.height*0.6,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.asset(
+                              "assets/onBoardImages/level3.PNG",
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.6,
+                            ),
+                            const Expanded(
+                                child: AutoSizeText(
+                              "Энэ бүлэг нь 30-н үетэй. Өгөгдсөн 3-н мэдээллээр амьтныг таах ёстой.",
+                              maxLines: 6,
+                            )),
+                          ],
                         ),
-                        const Expanded(child: AutoSizeText("Энэ бүлэг нь 30-н үетэй. Өгөгдсөн 3-н мэдээллээр амьтныг таах ёстой.",maxLines: 6,)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
-                      Image.asset(
-                        "lib/assets/onBoardImages/level3-1.PNG",
-                        width: MediaQuery.of(context).size.width*0.4,
-                        height: MediaQuery.of(context).size.height*0.6,
-                      ),const Expanded(child: AutoSizeText("Зөв тааж чадвал, амьтны зургийг харах боломжтой болно.",maxLines: 6,)),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Image.asset(
+                                "assets/onBoardImages/level3-1.PNG",
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                              ),
+                              const Expanded(
+                                  child: AutoSizeText(
+                                "Зөв тааж чадвал, амьтны зургийг харах боломжтой болно.",
+                                maxLines: 6,
+                              )),
+                            ]),
+                      ),
                     ]),
-                  ),
-                ]),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 color: Colors.indigo,
-                child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const SizedBox(height: 10,),
-                        Image.asset(
-                          "lib/assets/onBoardImages/level5.PNG",
-                          width: MediaQuery.of(context).size.width*0.4,
-                          height: MediaQuery.of(context).size.height*0.3,
-                        ),const SizedBox(height: 10,),
-                        Image.asset(
-                          "lib/assets/onBoardImages/level5-1.PNG",
-                          width: MediaQuery.of(context).size.width*0.4,
-                          height: MediaQuery.of(context).size.height*0.3,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Image.asset(
+                              "assets/onBoardImages/level5.PNG",
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.3,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Image.asset(
+                              "assets/onBoardImages/level5-1.PNG",
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.3,
+                            ),
+                            const Expanded(
+                                child: AutoSizeText(
+                              "Цагийг эхлүүлээд өгөгдсөн хугацаанд эхийг уншина.",
+                              maxLines: 6,
+                            )),
+                          ],
                         ),
-                        const Expanded(child: AutoSizeText("Цагийг эхлүүлээд өгөгдсөн хугацаанд эхийг уншина.",maxLines: 6,)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
-                      const SizedBox(height: 10,),
-                      Image.asset(
-                        "lib/assets/onBoardImages/level5-2.PNG",
-                        width: MediaQuery.of(context).size.width*0.4,
-                        height: MediaQuery.of(context).size.height*0.3,
-                      ),const SizedBox(height: 10,),Image.asset(
-                        "lib/assets/onBoardImages/level5-3.PNG",
-                        width: MediaQuery.of(context).size.width*0.4,
-                        height: MediaQuery.of(context).size.height*0.3,
-                      ),const Expanded(child: AutoSizeText("Цаг дууссаны дараа хамгийн сүүлд уншсан үг дээр удаан дарж тоог харна.",maxLines: 6,)),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Image.asset(
+                                "assets/onBoardImages/level5-2.PNG",
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Image.asset(
+                                "assets/onBoardImages/level5-3.PNG",
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
+                              ),
+                              const Expanded(
+                                  child: AutoSizeText(
+                                "Цаг дууссаны дараа хамгийн сүүлд уншсан үг дээр удаан дарж тоог харна.",
+                                maxLines: 6,
+                              )),
+                            ]),
+                      ),
                     ]),
-                  ),
-                ]),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 color: Colors.indigo,
-                child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset(
-                          "lib/assets/onBoardImages/dialogwin.PNG",
-                          width: MediaQuery.of(context).size.width*0.4,
-                          height: MediaQuery.of(context).size.height*0.6,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.asset(
+                              "assets/onBoardImages/dialogwin.PNG",
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.6,
+                            ),
+                            const Expanded(
+                                child: AutoSizeText(
+                              "Үе бүрийг давахад гарч ирнэ.",
+                              maxLines: 6,
+                            )),
+                          ],
                         ),
-                        const Expanded(child: AutoSizeText("Үе бүрийг давахад гарч ирнэ.",maxLines: 6,)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
-                      Image.asset(
-                        "lib/assets/onBoardImages/dialoglose.PNG",
-                        width: MediaQuery.of(context).size.width*0.4,
-                        height: MediaQuery.of(context).size.height*0.6,
-                      ),const Expanded(child: AutoSizeText("Үе бүрт хожигдоход гарч ирнэ..",maxLines: 6,)),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Image.asset(
+                                "assets/onBoardImages/dialoglose.PNG",
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                              ),
+                              const Expanded(
+                                  child: AutoSizeText(
+                                "Үе бүрт хожигдоход гарч ирнэ..",
+                                maxLines: 6,
+                              )),
+                            ]),
+                      ),
                     ]),
-                  ),
-                ]),
               ),
             ],
           ),

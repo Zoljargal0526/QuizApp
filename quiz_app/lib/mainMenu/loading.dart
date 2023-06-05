@@ -10,7 +10,7 @@ class Loading extends StatelessWidget {
     return Stack(children: [
       const Center(
         child: RiveAnimation.asset(
-          "lib/assets/mainMenu/loader-lollipop.riv",
+          "assets/mainMenu/loader-lollipop.riv",
           fit: BoxFit.cover,
         ),
       ),
@@ -19,7 +19,8 @@ class Loading extends StatelessWidget {
           left: 50,
           right: 50,
           child: Container(
-            child: Lottie.network("https://assets6.lottiefiles.com/packages/lf20_5owbhi69.json"),
+            child: Lottie.network(
+                "https://assets6.lottiefiles.com/packages/lf20_5owbhi69.json"),
           )),
     ]);
   }

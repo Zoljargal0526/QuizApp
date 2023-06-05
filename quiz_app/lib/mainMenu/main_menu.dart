@@ -11,7 +11,7 @@ class MainMenu extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-          image: AssetImage("lib/assets/mainMenu/background.png"),
+          image: AssetImage("assets/mainMenu/background.png"),
           fit: BoxFit.cover,
         )),
         child: Center(
@@ -28,7 +28,7 @@ class MainMenu extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 20),
                   child: FittedBox(
                       child: Lottie.asset(
-                          "lib/assets/mainMenu/children-holding-letters.json")),
+                          "assets/mainMenu/children-holding-letters.json")),
                 )),
                 Positioned(
                     left: 20,
