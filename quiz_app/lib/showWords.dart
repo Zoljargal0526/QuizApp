@@ -28,7 +28,8 @@ class _ShowWordsState extends State<ShowWords> {
     tappedIndex = -1;
     getListWordData();
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
         getListWordData();
       }
     });
@@ -93,7 +94,8 @@ class _ShowWordsState extends State<ShowWords> {
                         title: Text(words[index].mon)),
                     AnimatedContainer(
                       height: tappedIndex == index ? height : 0,
-                      color: tappedIndex == index ? Colors.orange : Colors.white,
+                      color:
+                          tappedIndex == index ? Colors.orange : Colors.white,
                       width: MediaQuery.of(context).size.width,
                       duration: const Duration(seconds: 1),
                       padding: const EdgeInsets.all(5),
@@ -107,7 +109,11 @@ class _ShowWordsState extends State<ShowWords> {
                           ),
                           Text(
                             "English:${words[index].name}",
-                            style: TextStyle(fontSize: 20, color: tappedIndex == index ? Colors.black : Colors.white),
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: tappedIndex == index
+                                    ? Colors.black
+                                    : Colors.white),
                           ),
                         ],
                       ),

@@ -62,14 +62,16 @@ class Database {
     var data = await ref.orderByChild("/id").equalTo(value).once();
     //var data = await ref.limitToFirst(value).once();
     var refData = data.snapshot.value as Map? ?? {};
-    var rData = refData
-        .values.first; // river:{name="river"} iig {name="river"} bolgoson
+    var rData = refData.values.isEmpty
+        ? Word()
+        : refData
+            .values.first; // river:{name="river"} iig {name="river"} bolgoson
     //print(rData["name"]);
     if (rData.isNotEmpty) {
       Word word = Word(name: "", imagePath: "", mon: "");
-      word.name = rData["name"];
-      word.imagePath = rData["image"];
-      word.mon = rData["mon"];
+      word.name = rData["name"] ?? '';
+      word.imagePath = rData["image"] ?? '';
+      word.mon = rData["mon"] ?? '';
       word.id = rData["id"].toString();
       return word;
     }
