@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -48,6 +42,16 @@ class DefaultFirebaseOptions {
         );
     }
   }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCMmO2H4sUceMqfLdUEAycqbfd-BVn2Z2Q',
+    appId: '1:246883194844:web:5e35a3ab48636cee29e119',
+    messagingSenderId: '246883194844',
+    projectId: 'quiz-app-zolo',
+    authDomain: 'quiz-app-zolo.firebaseapp.com',
+    databaseURL: 'https://quiz-app-zolo-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'quiz-app-zolo.appspot.com',
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDboHbUkNqBntkkkTLCD5pVCgMlVGzjd8U',
@@ -68,5 +72,17 @@ class DefaultFirebaseOptions {
     androidClientId: '246883194844-bm1qp6r0jid8jo8p04jrcfjavvo6kqhq.apps.googleusercontent.com',
     iosClientId: '246883194844-408k89e44l3oru2v4bg1112nj63frldo.apps.googleusercontent.com',
     iosBundleId: 'com.example.quizApp',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBOW9orlUdKZ1gj9hBEfnwwhTYE9xMEFkA',
+    appId: '1:246883194844:ios:2aa5b2f725b3156829e119',
+    messagingSenderId: '246883194844',
+    projectId: 'quiz-app-zolo',
+    databaseURL: 'https://quiz-app-zolo-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'quiz-app-zolo.appspot.com',
+    androidClientId: '246883194844-bm1qp6r0jid8jo8p04jrcfjavvo6kqhq.apps.googleusercontent.com',
+    iosClientId: '246883194844-csf04co23enbn4hi1498psplc0c8pl5u.apps.googleusercontent.com',
+    iosBundleId: 'com.example.quizApp.RunnerTests',
   );
 }

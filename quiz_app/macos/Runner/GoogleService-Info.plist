@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>246883194844-csf04co23enbn4hi1498psplc0c8pl5u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.246883194844-csf04co23enbn4hi1498psplc0c8pl5u</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>246883194844-bm1qp6r0jid8jo8p04jrcfjavvo6kqhq.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBOW9orlUdKZ1gj9hBEfnwwhTYE9xMEFkA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>246883194844</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.quizApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>quiz-app-zolo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>quiz-app-zolo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:246883194844:ios:2aa5b2f725b3156829e119</string>
+	<key>DATABASE_URL</key>
+	<string>https://quiz-app-zolo-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
